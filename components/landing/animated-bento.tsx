@@ -1,0 +1,168 @@
+'use client';
+
+import Link from "next/link";
+import { useRef } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowUpRight, Compass, Dna, Brain, Sparkles } from "lucide-react";
+import Heading from "./heading";
+import SubHeading from "./subheading";
+import Container from "./container";
+import { projects, type Project, type MaturityStage } from "@/lib/projects";
+import { cn } from "@/lib/utils";
+
+const stageStyles: Record<MaturityStage, { border: string; text: string; bg: string; dot: string }> = {
+  'Prototype direction': {
+    border: 'border-[#00F0FF]/40',
+    text: 'text-[#00F0FF]',
+    bg: 'bg-[#00F0FF]/10',
+    dot: 'bg-[#00F0FF]',
+  },
+  'Product development': {
+    border: 'border-[#FF9E3B]/40',
+    text: 'text-[#FF9E3B]',
+    bg: 'bg-[#FF9E3B]/10',
+    dot: 'bg-[#FF9E3B]',
+  },
+  'Research phase': {
+    border: 'border-[#10F5A0]/40',
+    text: 'text-[#10F5A0]',
+    bg: 'bg-[#10F5A0]/10',
+    dot: 'bg-[#10F5A0]',
+  },
+  'Concept exploration': {
+    border: 'border-[#B87BFF]/40',
+    text: 'text-[#B87BFF]',
+    bg: 'bg-[#B87BFF]/10',
+    dot: 'bg-[#B87BFF]',
+  },
+};
+
+function BentoVisual({ project }: { project: Project }) {
+  return (
+    <div className={`project-visual visual-${project.slug} relative h-[200px] w-full bg-[#11141a] border-b border-[#292C33] overflow-hidden`}>
+      <span className="visual-grid" />
+      <span className="visual-orbit orbit-one" />
+      <span className="visual-orbit orbit-two" />
+      <span className="visual-core" />
+      <span className="visual-caption absolute bottom-3 left-4 text-[9px] font-mono tracking-widest text-[#92969F] px-2.5 py-1 rounded bg-[#090A0C]/80 border border-[#292C33]">
+        {project.slug === 'sense' ? 'HARDWARE PROTOTYPE' : 'CONCEPTUAL VISUAL'}
+      </span>
+      <span
+        className="absolute top-3 right-4 w-2 h-2 rounded-full animate-pulse"
+        style={{ backgroundColor: project.auraColor, boxShadow: `0 0 12px ${project.auraColor}` }}
+      />
+    </div>
+  );
+}
+
+function ProjectBentoCard({ project }: { project: Project }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const style = stageStyles[project.stage];
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    cardRef.current.style.setProperty("--mouse-x", `${x}px`);
+    cardRef.current.style.setProperty("--mouse-y", `${y}px`);
+  };
+
+  return (
+    <Link
+      href={`/projects/${project.slug}`}
+      className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#668CFF] rounded-2xl"
+    >
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        whileHover={shouldReduceMotion ? {} : { y: -3 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+        style={{ ['--card-aura' as string]: project.auraColor }}
+        className="h-full flex flex-col justify-between metallic-border ambient-beam cryo-glass rounded-2xl overflow-hidden shadow-lg transition-all duration-300"
+      >
+        <BentoVisual project={project} />
+
+        <div className="p-6 sm:p-7 flex flex-col justify-between flex-grow space-y-6">
+          <div>
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#92969F]">
+                {project.domain}
+              </span>
+              <span
+                className={cn(
+                  "inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded-full border",
+                  style.border,
+                  style.text,
+                  style.bg
+                )}
+              >
+                <span className={cn("w-1.5 h-1.5 rounded-full", style.dot)} />
+                {project.stage}
+              </span>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-normal text-[#F4F4F0] flex items-center justify-between gap-2 m-0 group-hover:text-white transition-colors">
+              <span>{project.name}</span>
+              <ArrowUpRight
+                className="w-4 h-4 text-[#92969F] transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                style={{ color: project.auraColor }}
+              />
+            </h3>
+
+            <p className="mt-3 text-xs sm:text-sm text-[#92969F] leading-relaxed line-clamp-2 m-0">
+              {project.summary}
+            </p>
+          </div>
+
+          <div className="pt-4 border-t border-[#292C33]/60 flex items-center justify-between text-xs text-[#92969F]">
+            <span className="font-mono text-[10px] text-[#92969F]">ROLE // {project.role}</span>
+            <span
+              className="text-xs font-mono transition-colors group-hover:underline flex items-center gap-1"
+              style={{ color: project.auraColor }}
+            >
+              <span>Inspect specification</span>
+              <span>&rarr;</span>
+            </span>
+          </div>
+        </div>
+      </motion.div>
+    </Link>
+  );
+}
+
+export default function AnimatedBento() {
+  return (
+    <section className="py-24 border-b border-[#292C33] bg-[#090A0C]">
+      <Container>
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-16 pb-6 border-b border-[#292C33]">
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#668CFF] mb-2">
+              SECTION 03 // PROJECT PORTFOLIO
+            </div>
+            <Heading as="h2" variant="medium" className="text-3xl sm:text-5xl font-normal text-[#F4F4F0] m-0">
+              Four Directions. <em className="text-[#92969F] font-normal italic font-serif">One Ambition.</em>
+            </Heading>
+          </div>
+
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#668CFF] hover:underline"
+          >
+            <span>View Full Portfolio Matrix</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* 2x2 Interactive Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {projects.map((project) => (
+            <ProjectBentoCard key={project.slug} project={project} />
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}

@@ -1,0 +1,9 @@
+'use server'
+
+import { z } from 'zod'
+
+const intakeSchema = z.object({ name: z.string().trim().min(2, 'Please enter your name.'), email: z.string().email('Please enter a valid email.'), organization: z.string().trim().max(120).optional(), category: z.enum(['Engineer', 'Researcher', 'Industrial Partner', 'Institution', 'Early Customer', 'Prospective Team Member']), projectInterest: z.enum(['General', 'Project SENSE', 'Bio-Bus (Organoid Intelligence)', 'Uploaded Intelligence', 'SkillSynthesis']), message: z.string().trim().min(20, 'Please share a little more context.'), honeypot: z.string().max(0).optional() })
+export type IntakeState = { ok: boolean; message: string; errors?: Record<string, string[]> }
+export async function submitCollaboratorIntake(_: IntakeState, formData: FormData): Promise<IntakeState> { const raw = Object.fromEntries(formData.entries()); const result = intakeSchema.safeParse(raw); if (!result.success) return { ok: false, message: 'Please check the highlighted fields.', errors: result.error.flatten().fieldErrors as Record<string, string[]> }; if (result.data.honeypot) return { ok: true, message: 'Thanks — your note has been received.' }; console.info(JSON.stringify({ event: 'collaborator_intake', projectInterest: result.data.projectInterest, category: result.data.category })); return { ok: true, message: 'Thanks — your note has been received. We will be in touch.' } }
+export async function submitInstitutionalPilot(_: IntakeState, formData: FormData): Promise<IntakeState> { return submitCollaboratorIntake(_, formData) }
+export async function subscribeLabUpdates(_: IntakeState, formData: FormData): Promise<IntakeState> { const email = z.string().email().safeParse(formData.get('email')); return email.success ? { ok: true, message: 'Please check your inbox to confirm your subscription.' } : { ok: false, message: 'Please enter a valid email.' } }
