@@ -39,13 +39,37 @@ export function ProjectCardVisual({ project, className }: ProjectCardVisualProps
 
   return (
     <div className={cn("relative h-56 w-full overflow-hidden bg-[#050608] border-b border-[#292C33] group", className)}>
-      {/* LAYER 1: AUTHENTIC DARK-GRADED DOCUMENTARY PHOTOGRAPHY */}
-      <img
-        src={photo.url}
-        alt={photo.alt}
-        className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-[0.34] group-hover:scale-105 group-hover:brightness-[0.45] transition-all duration-700 ease-out"
-        loading="lazy"
-      />
+      {/* LAYER 1: AUTHENTIC PHOTOGRAPHY / REAL SENSE HARDWARE */}
+      {project.slug === 'sense' ? (
+        <>
+          {/* Default Studio View: Top-Left Hero Waist Belt Crop */}
+          <div
+            className="absolute inset-0 bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:162%_202%] bg-[position:0%_0%] bg-no-repeat transition-all duration-700 ease-out group-hover:opacity-0 group-hover:scale-105"
+            style={{ filter: 'contrast(1.1) brightness(0.85)' }}
+          />
+
+          {/* Hover View: Top-Right Exploded Pod Teardown Crop */}
+          <div
+            className="absolute inset-0 bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:265%_202%] bg-[position:100%_0%] bg-no-repeat opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+            style={{ filter: 'contrast(1.15) brightness(0.9)' }}
+          />
+
+          {/* Interactive HUD Overlay on Hover */}
+          <div className="absolute top-3 left-3.5 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <span className="text-[8px] font-mono uppercase tracking-wider text-[#D4FF00] bg-[#050608]/90 px-2 py-0.5 rounded border border-[#668CFF]/40 shadow-lg flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] animate-pulse" />
+              ESP32 CONTROL UNIT // 4-DIR HAPTIC MODULES
+            </span>
+          </div>
+        </>
+      ) : (
+        <img
+          src={photo.url}
+          alt={photo.alt}
+          className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-[0.34] group-hover:scale-105 group-hover:brightness-[0.45] transition-all duration-700 ease-out"
+          loading="lazy"
+        />
+      )}
 
       {/* Optical Electric Cobalt Vignette & Midnight Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#090A0C] via-[#090A0C]/50 to-[#668CFF]/15 pointer-events-none" />

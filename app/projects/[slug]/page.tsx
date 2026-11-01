@@ -22,6 +22,8 @@ import { ProjectStatusBadge, SectionLabel } from '@/components/site'
 import { OiSignalChain } from '@/components/oi-signal-chain'
 import { CollabForm } from '@/components/collab-form'
 import { Project3DScrollStage } from '@/components/visuals/Project3DScrollStage'
+import { SenseScrollExplosion } from '@/components/visuals/SenseScrollExplosion'
+import { SenseNeuroLoopSection } from '@/components/visuals/SenseNeuroLoopSection'
 import { projects } from '@/lib/projects'
 
 export function generateStaticParams() {
@@ -40,6 +42,9 @@ export default async function ProjectPage({
   return (
     <>
       <Navbar />
+
+      {/* When on Project SENSE, mount the pinned full-viewport 3D hardware teardown stage */}
+      {project.slug === 'sense' && <SenseScrollExplosion />}
 
       <main
         style={{ ['--card-aura' as string]: project.auraColor }}
@@ -86,10 +91,12 @@ export default async function ProjectPage({
           </p>
         </header>
 
-        {/* MOBILE / TABLET 3D PRODUCT RIG (< lg) */}
-        <div className="lg:hidden mb-12 relative z-10">
-          <Project3DScrollStage slug={project.slug} />
-        </div>
+        {/* MOBILE / TABLET 3D PRODUCT RIG (< lg) - Suppressed for SENSE as it uses full-viewport SenseScrollExplosion */}
+        {project.slug !== 'sense' && (
+          <div className="lg:hidden mb-12 relative z-10">
+            <Project3DScrollStage slug={project.slug} />
+          </div>
+        )}
 
         {/* SYNCHRONIZED SPLIT-SCREEN 3D SCROLL ARCHITECTURE (lg:grid-cols-12) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative z-10">
@@ -143,10 +150,14 @@ export default async function ProjectPage({
                   </p>
                 </div>
 
-                {/* Special Interactive Architecture Component for Bio-Bus */}
+                {/* Special Interactive Architecture Component for Bio-Bus and SENSE */}
                 {project.slug === 'bio-bus' ? (
                   <div className="mt-6">
                     <OiSignalChain />
+                  </div>
+                ) : project.slug === 'sense' ? (
+                  <div className="mt-6">
+                    <SenseNeuroLoopSection />
                   </div>
                 ) : (
                   /* Custom 3-Stage Architecture Schematic for other projects */
@@ -357,9 +368,9 @@ export default async function ProjectPage({
             </section>
           </div>
 
-          {/* RIGHT COLUMN: STICKY 3D REVOLVING & EXPLODING PRODUCT RIG (DESKTOP lg:col-span-5) */}
+          {/* RIGHT COLUMN: STICKY 3D REVOLVING RIG (DESKTOP lg:col-span-5) */}
           <div className="hidden lg:block lg:col-span-5 sticky top-28 h-[calc(100vh-8.5rem)] flex items-center justify-center">
-            <Project3DScrollStage slug={project.slug} />
+            {project.slug !== 'sense' && <Project3DScrollStage slug={project.slug} />}
           </div>
         </div>
       </main>

@@ -89,6 +89,17 @@ const ACTUATOR_BEARINGS = [
   { label: '315° NW', deg: 315, title: 'Northwest Sector', sub: 'Port Heading' },
 ];
 
+const POD_TARGETS = [
+  { deg: 0, label: '000° N', left: '44%', top: '52%', name: 'Front-Center Clasp' },
+  { deg: 45, label: '045° NE', left: '65%', top: '48%', name: 'Front-Right Pod' },
+  { deg: 90, label: '090° E', left: '83%', top: '38%', name: 'Right Lateral Pod' },
+  { deg: 135, label: '135° SE', left: '72%', top: '25%', name: 'Rear-Right Pod' },
+  { deg: 180, label: '180° S', left: '48%', top: '20%', name: 'Posterior Spine Pod' },
+  { deg: 225, label: '225° SW', left: '26%', top: '25%', name: 'Rear-Left Pod' },
+  { deg: 270, label: '270° W', left: '14%', top: '38%', name: 'Left Lateral Pod' },
+  { deg: 315, label: '315° NW', left: '26%', top: '48%', name: 'Front-Left Pod' },
+];
+
 export default function Hero() {
   const [activeTab, setActiveTab] = useState<LabTab>('sense');
   const shouldReduceMotion = useReducedMotion();
@@ -122,6 +133,7 @@ export default function Hero() {
   // Tab 01 (SENSE) state
   const [activeActuator, setActiveActuator] = useState<number>(0);
   const [hapticFrequency, setHapticFrequency] = useState<'185Hz' | '240Hz'>('185Hz');
+  const [senseViewMode, setSenseViewMode] = useState<'belt' | 'exploded' | 'neuroloop' | 'clasp' | 'module'>('belt');
 
   // Tab 02 (Bio-Bus) state
   const [isStimulating, setIsStimulating] = useState<boolean>(false);
@@ -409,7 +421,10 @@ export default function Hero() {
                               return (
                                 <button
                                   key={bearing.label}
-                                  onClick={() => setActiveActuator(idx)}
+                                  onClick={() => {
+                                    setActiveActuator(idx);
+                                    setSenseViewMode('belt');
+                                  }}
                                   className={cn(
                                     "px-2 py-1.5 rounded text-[10px] font-mono border transition-all text-center cursor-pointer",
                                     isSelected
@@ -456,102 +471,273 @@ export default function Hero() {
                         </div>
                       </div>
 
-                      {/* Right Column: True 3D Isometric Holographic Viewport */}
-                      <div className="lg:col-span-6 flex flex-col items-center justify-center p-4">
-                        <div
-                          className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl border border-[#292C33] bg-[#07080B] overflow-hidden flex items-center justify-center shadow-[inset_0_0_40px_rgba(0,0,0,0.8)]"
-                          style={{ perspective: 900 }}
-                        >
-                          {/* Radial Grid & Reticle Background */}
-                          <div
-                            className="absolute inset-0 opacity-15"
-                            style={{
-                              backgroundImage: 'radial-gradient(circle at center, #668CFF 1px, transparent 1px)',
-                              backgroundSize: '24px 24px',
-                            }}
-                          />
-
-                          {/* 3D Tilted Isometric Orbit Stage */}
-                          <div
-                            className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full flex items-center justify-center transition-transform duration-500"
-                            style={{
-                              transform: 'rotateX(52deg)',
-                              transformStyle: 'preserve-3d',
-                            }}
-                          >
-                            {/* Coordinate Compass Floor */}
-                            <div className="absolute inset-0 rounded-full border border-[#292C33] bg-[#090A0C]/60" />
-                            <div className="absolute inset-3 rounded-full border border-dashed border-[#668CFF]/25" />
-                            <div className="absolute inset-8 rounded-full border border-[#292C33]" />
-
-                            {/* Center IMU Hub */}
-                            <div
-                              className="relative w-12 h-12 rounded-full bg-[#101217] border border-[#668CFF]/40 flex flex-col items-center justify-center shadow-[0_0_20px_rgba(102,140,255,0.2)]"
-                              style={{ transform: 'translateZ(15px)' }}
-                            >
-                              <Compass className="w-4 h-4 text-[#668CFF] animate-pulse" />
-                              <span className="text-[7px] font-mono text-[#F4F4F0] mt-0.5">IMU</span>
+                      {/* Right Column: Real Project SENSE Hardware Optical Viewport */}
+                      <div className="lg:col-span-6 flex flex-col justify-between space-y-3">
+                        {/* Hardware Viewport Frame */}
+                        <div className="relative rounded-2xl border border-[#292C33] bg-[#07080B] overflow-hidden shadow-[inset_0_0_40px_rgba(0,0,0,0.85)] flex flex-col justify-between">
+                          {/* Top Telemetry & View Switcher Bar */}
+                          <div className="flex flex-wrap items-center justify-between gap-2 px-3.5 py-2 border-b border-[#292C33] bg-[#090A0C]/95 z-20">
+                            <div className="flex items-center gap-1.5">
+                              <span className="w-1.5 h-1.5 rounded-[2px] bg-[#D4FF00] shadow-[0_0_6px_#D4FF00] animate-pulse" />
+                              <span className="text-[9px] font-mono uppercase tracking-wider text-[#F4F4F0] font-semibold">
+                                HARDWARE OPTICAL VIEWPORT
+                              </span>
                             </div>
 
-                            {/* 8 Actuators in 3D Perspective */}
-                            {ACTUATOR_BEARINGS.map((bearing, idx) => {
-                              const rad = (bearing.deg - 90) * (Math.PI / 180);
-                              const radius = 96;
-                              const x = Math.round(radius * Math.cos(rad));
-                              const y = Math.round(radius * Math.sin(rad));
-                              const isSelected = activeActuator === idx;
+                            {/* 3-Mode Micro-Pill Switcher */}
+                            <div className="flex items-center gap-1 text-[9px] font-mono">
+                              <button
+                                type="button"
+                                onClick={() => setSenseViewMode('belt')}
+                                className={cn(
+                                  "px-2 py-0.5 rounded transition-colors cursor-pointer",
+                                  senseViewMode === 'belt'
+                                    ? "bg-[#668CFF] text-[#050608] font-bold shadow-[0_0_8px_rgba(102,140,255,0.4)]"
+                                    : "bg-[#101217] text-[#92969F] hover:text-[#F4F4F0] border border-[#292C33]"
+                                )}
+                              >
+                                [ 01 // BELT HARDWARE ]
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setSenseViewMode('exploded')}
+                                className={cn(
+                                  "px-2 py-0.5 rounded transition-colors cursor-pointer",
+                                  senseViewMode === 'exploded'
+                                    ? "bg-[#668CFF] text-[#050608] font-bold shadow-[0_0_8px_rgba(102,140,255,0.4)]"
+                                    : "bg-[#101217] text-[#92969F] hover:text-[#F4F4F0] border border-[#292C33]"
+                                )}
+                              >
+                                [ 02 // EXPLODED POD ]
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setSenseViewMode('neuroloop')}
+                                className={cn(
+                                  "px-2 py-0.5 rounded transition-colors cursor-pointer",
+                                  senseViewMode === 'neuroloop'
+                                    ? "bg-[#668CFF] text-[#050608] font-bold shadow-[0_0_8px_rgba(102,140,255,0.4)]"
+                                    : "bg-[#101217] text-[#92969F] hover:text-[#F4F4F0] border border-[#292C33]"
+                                )}
+                              >
+                                [ 03 // NEUROLOOP ]
+                              </button>
+                            </div>
+                          </div>
 
-                              return (
-                                <div
-                                  key={bearing.label}
-                                  style={{
-                                    transform: `translate3d(${x}px, ${y}px, ${isSelected ? '24px' : '0px'})`,
-                                    transformStyle: 'preserve-3d',
-                                  }}
-                                  className="absolute flex items-center justify-center transition-transform duration-300"
-                                >
-                                  {/* Concentric Expanding Shockwave Rings on Active Node */}
-                                  {isSelected && (
-                                    <>
-                                      <span className="absolute w-12 h-12 rounded-full border border-[#D4FF00] animate-ping opacity-75 pointer-events-none" />
-                                      <span className="absolute w-8 h-8 rounded-full bg-[#D4FF00]/20 animate-pulse pointer-events-none" />
-                                      {/* Vertical 3D Laser Beam */}
-                                      <div
-                                        className="absolute w-[2px] h-10 bg-gradient-to-t from-[#D4FF00] to-transparent pointer-events-none"
-                                        style={{ transform: 'rotateX(-52deg) translateY(-20px)' }}
-                                      />
-                                    </>
-                                  )}
+                          {/* Optical Display Window */}
+                          <div className="relative h-[250px] sm:h-[280px] w-full bg-[#050608] overflow-hidden flex items-center justify-center">
+                            {/* Fine Coordinate Reticle Grid Overlay */}
+                            <div
+                              className="absolute inset-0 opacity-15 pointer-events-none z-10"
+                              style={{
+                                backgroundImage: 'radial-gradient(circle at center, #668CFF 1px, transparent 1px)',
+                                backgroundSize: '24px 24px',
+                              }}
+                            />
 
-                                  <button
-                                    onClick={() => setActiveActuator(idx)}
-                                    aria-label={`Bearing ${bearing.label}`}
-                                    className={cn(
-                                      "w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-mono font-bold transition-all cursor-pointer",
-                                      isSelected
-                                        ? "bg-[#D4FF00] text-[#050608] shadow-[0_0_25px_#D4FF00] scale-110"
-                                        : "bg-[#101217] text-[#92969F] border border-[#292C33] hover:border-[#668CFF] hover:text-[#F4F4F0]"
-                                    )}
-                                  >
-                                    {idx + 1}
-                                  </button>
+                            {/* VIEW: BELT HARDWARE with 8-Actuator Target Reticles */}
+                            {senseViewMode === 'belt' && (
+                              <motion.div
+                                key="belt-view"
+                                initial={shouldReduceMotion ? false : { opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.25 }}
+                                className="relative w-full h-full bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:162%_202%] bg-[position:0%_0%] bg-no-repeat"
+                                style={{ filter: 'contrast(1.1) brightness(0.92)' }}
+                              >
+                                {/* Floating Active Target HUD Tag */}
+                                <div className="absolute top-2.5 left-2.5 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#090A0C]/90 backdrop-blur-md border border-[#D4FF00]/40 shadow-lg text-[9px] font-mono text-[#D4FF00]">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] animate-pulse" />
+                                  <span>
+                                    ACTIVE POD: [{POD_TARGETS[activeActuator].label}] // {hapticFrequency} LRA PULSE // ESP32_LOCKED
+                                  </span>
                                 </div>
-                              );
-                            })}
-                          </div>
 
-                          {/* Holographic Stage Overlay Readout */}
-                          <div className="absolute top-3 left-3 text-[9px] font-mono text-[#92969F] space-y-0.5">
-                            <div>STAGE: 3D ISOMETRIC BELT</div>
-                            <div className="text-[#668CFF]">TILT: 52° ELEVATION</div>
-                          </div>
-                          <div className="absolute bottom-3 right-3 text-[9px] font-mono text-[#D4FF00]">
-                            ACTIVE: {ACTUATOR_BEARINGS[activeActuator].label}
+                                {/* 8 Interactive Vibration Pod Target Overlays */}
+                                {POD_TARGETS.map((target, idx) => {
+                                  const isActive = activeActuator === idx;
+                                  return (
+                                    <div
+                                      key={target.label}
+                                      style={{ left: target.left, top: target.top }}
+                                      className="absolute z-20"
+                                    >
+                                      {/* Active Reticle & Concentric Shockwave Pulse */}
+                                      {isActive && (
+                                        <div className="pointer-events-none">
+                                          {/* Concentric Expanding Shockwave */}
+                                          <span className="w-12 h-12 -ml-6 -mt-6 absolute rounded-full border border-[#D4FF00] animate-ping opacity-75" />
+                                          <span className="w-8 h-8 -ml-4 -mt-4 absolute rounded-full bg-[#D4FF00]/25 animate-pulse" />
+                                          {/* Target Reticle Frame */}
+                                          <div className="w-8 h-8 -ml-4 -mt-4 absolute rounded-full border-2 border-[#D4FF00] shadow-[0_0_20px_#D4FF00] flex items-center justify-center">
+                                            <div className="w-2.5 h-2.5 rounded-full bg-[#D4FF00] shadow-[0_0_6px_#D4FF00]" />
+                                          </div>
+                                        </div>
+                                      )}
+
+                                      {/* Clickable Bearing Hotspot */}
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          setActiveActuator(idx);
+                                          setSenseViewMode('belt');
+                                        }}
+                                        aria-label={`Select Pod ${target.label}`}
+                                        className={cn(
+                                          "w-6 h-6 -ml-3 -mt-3 absolute rounded-full flex items-center justify-center text-[8px] font-mono font-bold transition-all cursor-pointer",
+                                          isActive
+                                            ? "opacity-0"
+                                            : "border border-white/30 bg-[#090A0C]/70 hover:border-[#668CFF] hover:scale-125 text-[#F4F4F0]/90 shadow-md"
+                                        )}
+                                      >
+                                        {idx + 1}
+                                      </button>
+                                    </div>
+                                  );
+                                })}
+                              </motion.div>
+                            )}
+
+                            {/* VIEW: EXPLODED POD TEARDOWN */}
+                            {senseViewMode === 'exploded' && (
+                              <motion.div
+                                key="exploded-view"
+                                initial={shouldReduceMotion ? false : { opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.25 }}
+                                className="relative w-full h-full bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:265%_202%] bg-[position:100%_0%] bg-no-repeat"
+                                style={{ filter: 'contrast(1.15) brightness(0.95)' }}
+                              >
+                                <div className="absolute top-2.5 left-2.5 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#090A0C]/90 backdrop-blur-md border border-[#668CFF]/40 shadow-lg text-[9px] font-mono text-[#668CFF]">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#668CFF] animate-pulse" />
+                                  <span>5-PART TEARDOWN: LED CAP &rarr; LRA MOTOR &rarr; ISOLATION &rarr; ESP32 &rarr; LiPo</span>
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* VIEW: NEUROLOOP CLOSED-LOOP ARCHITECTURE */}
+                            {senseViewMode === 'neuroloop' && (
+                              <motion.div
+                                key="neuroloop-view"
+                                initial={shouldReduceMotion ? false : { opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.25 }}
+                                className="relative w-full h-full bg-[url('/images/sense-neuroloop.jpg')] bg-cover bg-center"
+                              >
+                                <div className="absolute top-2.5 left-2.5 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#090A0C]/90 backdrop-blur-md border border-[#668CFF]/40 shadow-lg text-[9px] font-mono text-[#668CFF]">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] animate-pulse" />
+                                  <span>CLOSED-LOOP: EEG &rarr; AI DSP &rarr; ROBOT CONTROL &rarr; HAPTIC FEEDBACK</span>
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* VIEW: MAGNETIC CENTER CLASP */}
+                            {senseViewMode === 'clasp' && (
+                              <motion.div
+                                key="clasp-view"
+                                initial={shouldReduceMotion ? false : { opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.25 }}
+                                className="relative w-full h-full bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:320%_340%] bg-[position:15%_95%] bg-no-repeat"
+                                style={{ filter: 'contrast(1.15) brightness(0.95)' }}
+                              >
+                                <div className="absolute top-2.5 left-2.5 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#090A0C]/90 backdrop-blur-md border border-[#D4FF00]/40 shadow-lg text-[9px] font-mono text-[#D4FF00]">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] animate-pulse" />
+                                  <span>MAGNETIC CENTER CLASP // QUICK-RELEASE RETENTION BAR</span>
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* VIEW: 4-DIR TACTILE POD */}
+                            {senseViewMode === 'module' && (
+                              <motion.div
+                                key="module-view"
+                                initial={shouldReduceMotion ? false : { opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.25 }}
+                                className="relative w-full h-full bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:350%_350%] bg-[position:95%_65%] bg-no-repeat"
+                                style={{ filter: 'contrast(1.15) brightness(0.95)' }}
+                              >
+                                <div className="absolute top-2.5 left-2.5 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#090A0C]/90 backdrop-blur-md border border-[#668CFF]/40 shadow-lg text-[9px] font-mono text-[#668CFF]">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#668CFF] animate-pulse" />
+                                  <span>RADIAL TACTILE POD // COBALT LED STATUS ARC</span>
+                                </div>
+                              </motion.div>
+                            )}
                           </div>
                         </div>
-                        <span className="text-[10px] font-mono text-[#92969F] mt-3">
-                          Select any bearing to project 3D spatial haptic wave
-                        </span>
+
+                        {/* 4-Thumbnail Optical Strip (Directly Below Main Photo) */}
+                        <div className="grid grid-cols-4 gap-2 pt-1">
+                          <button
+                            type="button"
+                            onClick={() => setSenseViewMode('belt')}
+                            className={cn(
+                              "group relative h-14 rounded-lg overflow-hidden border transition-all text-left flex flex-col justify-end p-1.5 cursor-pointer",
+                              senseViewMode === 'belt'
+                                ? "border-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.35)]"
+                                : "border-[#292C33] hover:border-[#668CFF]"
+                            )}
+                          >
+                            <div className="absolute inset-0 bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:162%_202%] bg-[position:0%_0%] bg-no-repeat opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#090A0C] to-transparent pointer-events-none" />
+                            <span className="relative z-10 text-[8px] font-mono text-[#F4F4F0] truncate font-medium">
+                              Assembled Belt
+                            </span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setSenseViewMode('exploded')}
+                            className={cn(
+                              "group relative h-14 rounded-lg overflow-hidden border transition-all text-left flex flex-col justify-end p-1.5 cursor-pointer",
+                              senseViewMode === 'exploded'
+                                ? "border-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.35)]"
+                                : "border-[#292C33] hover:border-[#668CFF]"
+                            )}
+                          >
+                            <div className="absolute inset-0 bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:265%_202%] bg-[position:100%_0%] bg-no-repeat opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#090A0C] to-transparent pointer-events-none" />
+                            <span className="relative z-10 text-[8px] font-mono text-[#F4F4F0] truncate font-medium">
+                              Exploded Pod
+                            </span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setSenseViewMode('clasp')}
+                            className={cn(
+                              "group relative h-14 rounded-lg overflow-hidden border transition-all text-left flex flex-col justify-end p-1.5 cursor-pointer",
+                              senseViewMode === 'clasp'
+                                ? "border-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.35)]"
+                                : "border-[#292C33] hover:border-[#668CFF]"
+                            )}
+                          >
+                            <div className="absolute inset-0 bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:320%_340%] bg-[position:15%_95%] bg-no-repeat opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#090A0C] to-transparent pointer-events-none" />
+                            <span className="relative z-10 text-[8px] font-mono text-[#F4F4F0] truncate font-medium">
+                              Magnetic Clasp
+                            </span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setSenseViewMode('module')}
+                            className={cn(
+                              "group relative h-14 rounded-lg overflow-hidden border transition-all text-left flex flex-col justify-end p-1.5 cursor-pointer",
+                              senseViewMode === 'module'
+                                ? "border-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.35)]"
+                                : "border-[#292C33] hover:border-[#668CFF]"
+                            )}
+                          >
+                            <div className="absolute inset-0 bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:350%_350%] bg-[position:95%_65%] bg-no-repeat opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#090A0C] to-transparent pointer-events-none" />
+                            <span className="relative z-10 text-[8px] font-mono text-[#F4F4F0] truncate font-medium">
+                              Tactile Pod
+                            </span>
+                          </button>
+                        </div>
                       </div>
                     </motion.div>
                   )}

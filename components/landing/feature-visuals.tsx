@@ -25,21 +25,21 @@ export function TactileRingVisual() {
 
   return (
     <div
-      style={{ ['--card-aura' as string]: '#00F0FF' }}
-      className="relative w-full h-[380px] metallic-border ambient-beam cryo-glass rounded-2xl p-6 flex flex-col justify-between overflow-hidden"
+      style={{ ['--card-aura' as string]: '#668CFF' }}
+      className="relative w-full h-[380px] metallic-border ambient-beam optical-glass rounded-2xl p-6 flex flex-col justify-between overflow-hidden"
     >
       {/* Background Radar / Polar Grid */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-25">
-        <div className="w-[280px] h-[280px] rounded-full border border-[#00F0FF]/40" />
-        <div className="w-[200px] h-[200px] rounded-full border border-dashed border-[#00F0FF]/30" />
-        <div className="w-[120px] h-[120px] rounded-full border border-[#00F0FF]/40" />
+        <div className="w-[280px] h-[280px] rounded-full border border-[#668CFF]/40" />
+        <div className="w-[200px] h-[200px] rounded-full border border-dashed border-[#668CFF]/30" />
+        <div className="w-[120px] h-[120px] rounded-full border border-[#668CFF]/40" />
         <div className="absolute w-[300px] h-px bg-[#292C33]" />
         <div className="absolute h-[300px] w-px bg-[#292C33]" />
       </div>
 
       <div className="flex items-center justify-between text-[10px] font-mono z-10">
-        <span className="text-[#00F0FF] flex items-center gap-1.5 font-semibold">
-          <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse" />
+        <span className="text-[#668CFF] flex items-center gap-1.5 font-semibold">
+          <span className="w-2 h-2 rounded-[2px] bg-[#D4FF00] shadow-[0_0_6px_#D4FF00] animate-pulse" />
           <span>AXIAL HAPTIC MOTOR ARRAY</span>
         </span>
         <span className="text-[#92969F]">8-CHANNEL ERM/LRA MATRIX</span>
@@ -48,8 +48,8 @@ export function TactileRingVisual() {
       {/* Center Tactile Actuator Hub */}
       <div className="relative w-[240px] h-[240px] mx-auto flex items-center justify-center z-10">
         {/* Center Indicator */}
-        <div className="w-16 h-16 rounded-full bg-[#101217] border border-[#00F0FF]/50 flex flex-col items-center justify-center text-center p-2 shadow-[0_0_25px_rgba(0,240,255,0.25)]">
-          <Compass className="w-4 h-4 text-[#00F0FF] mb-0.5 animate-spin" style={{ animationDuration: '18s' }} />
+        <div className="w-16 h-16 rounded-full bg-[#101217] border border-[#668CFF]/50 flex flex-col items-center justify-center text-center p-2 shadow-[0_0_25px_rgba(102,140,255,0.25)]">
+          <Compass className="w-4 h-4 text-[#668CFF] mb-0.5 animate-spin" style={{ animationDuration: '18s' }} />
           <span className="text-[9px] font-mono text-[#F4F4F0] leading-none">IMU</span>
         </div>
 
@@ -69,10 +69,10 @@ export function TactileRingVisual() {
                 transform: `translate(${x}px, ${y}px)`,
               }}
               className={cn(
-                "absolute w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#00F0FF]",
+                "absolute w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D4FF00] cursor-pointer",
                 isActive
-                  ? "bg-[#00F0FF] text-[#090A0C] scale-125 shadow-[0_0_20px_#00F0FF]"
-                  : "bg-[#101217] text-[#92969F] border border-[#292C33] hover:border-[#00F0FF] hover:scale-110"
+                  ? "bg-[#D4FF00] text-[#050608] scale-125 shadow-[0_0_20px_#D4FF00] font-bold"
+                  : "bg-[#101217] text-[#92969F] border border-[#292C33] hover:border-[#668CFF] hover:scale-110"
               )}
               aria-label={`Actuator ${item.label}`}
             >
@@ -85,10 +85,10 @@ export function TactileRingVisual() {
       {/* Selected Channel Readout */}
       <div className="bg-[#090A0C] border border-[#292C33] rounded-lg p-3 flex items-center justify-between text-xs z-10">
         <div>
-          <span className="text-[10px] font-mono text-[#00F0FF] uppercase mr-2">{selected.label}</span>
+          <span className="text-[10px] font-mono text-[#D4FF00] uppercase mr-2 font-semibold">{selected.label}</span>
           <span className="text-[#92969F]">{selected.desc}</span>
         </div>
-        <span className="text-[10px] font-mono text-emerald-400 font-semibold">&lt; 14.8 ms Latency</span>
+        <span className="text-[10px] font-mono text-emerald-400 font-semibold">&lt; 14.2 ms Latency</span>
       </div>
     </div>
   );
@@ -97,27 +97,27 @@ export function TactileRingVisual() {
 export function PrototypeVisualFrame() {
   return (
     <div
-      style={{ ['--card-aura' as string]: '#00F0FF' }}
-      className="relative w-full h-[380px] metallic-border ambient-beam cryo-glass rounded-2xl overflow-hidden p-6 flex flex-col justify-between"
+      style={{ ['--card-aura' as string]: '#668CFF' }}
+      className="relative w-full h-[380px] metallic-border ambient-beam optical-glass rounded-2xl overflow-hidden p-6 flex flex-col justify-between"
     >
       <div className="focus-scan" />
       <div className="focus-device">
         <div className="device-line" />
         <div className="device-dot" />
-        <div className="device-label">SENSE / REV. 03</div>
+        <div className="device-label">SENSE / REV. 04</div>
       </div>
 
       <div className="relative z-10 flex items-center justify-between">
         <span className="text-[10px] font-mono text-[#92969F] uppercase tracking-wider bg-[#090A0C]/80 px-2.5 py-1 rounded border border-[#292C33]">
           PHYSICAL HARDWARE TESTBENCH
         </span>
-        <span className="text-[10px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-2.5 py-1 rounded border border-[#00F0FF]/40 font-semibold">
+        <span className="text-[10px] font-mono text-[#668CFF] bg-[#668CFF]/10 px-2.5 py-1 rounded border border-[#668CFF]/40 font-semibold">
           PROTOTYPE DIRECTION
         </span>
       </div>
 
       <div className="relative z-10 bg-[#090A0C]/90 p-4 rounded-xl border border-[#292C33] backdrop-blur-md space-y-1">
-        <div className="text-[10px] font-mono text-[#00F0FF]">REVISION 03 ENCLOSURE &middot; BENCH TESTING</div>
+        <div className="text-[10px] font-mono text-[#668CFF]">REVISION 04 ENCLOSURE &middot; BENCH TESTING</div>
         <p className="text-xs text-[#F4F4F0] m-0 leading-relaxed">
           Flexible silicone acoustic-damped enclosure housing 8 spatial vibrotactile actuators with low-latency Bluetooth LE 5.3 bridge.
         </p>
