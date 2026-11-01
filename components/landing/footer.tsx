@@ -3,21 +3,21 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import Container from './container';
-import { JatayuMonogram } from './navbar';
+import { JatayuLogo } from './JatayuLogo';
 import { projects } from '@/lib/projects';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#292C33] bg-[#090A0C] text-[#92969F] text-xs py-16">
+    <footer className="border-t border-[#292C33] bg-[#050608] text-[#92969F] text-xs py-16">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-16 border-b border-[#292C33]">
           {/* Col 1: Wordmark & Statement */}
           <div className="md:col-span-5 space-y-4">
             <Link
               href="/"
-              className="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.18em] text-[#F4F4F0] hover:text-[#668CFF] transition-colors"
+              className="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.22em] text-[#F4F4F0] hover:text-[#668CFF] transition-colors"
             >
-              <JatayuMonogram />
+              <JatayuLogo className="w-6 h-6" />
               <span className="font-heading">JATAYU LABS</span>
             </Link>
 
@@ -26,7 +26,7 @@ export default function Footer() {
             </p>
 
             <div className="pt-2 flex items-center gap-2 font-mono text-[11px] text-[#92969F]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] shadow-[0_0_6px_#D4FF00]" />
               <span>Independent Frontier Technology &amp; Research Lab</span>
             </div>
           </div>

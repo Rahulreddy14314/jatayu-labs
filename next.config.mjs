@@ -6,6 +6,15 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/projects/skillsynthesis',
+        destination: '/projects/skillsynth',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig

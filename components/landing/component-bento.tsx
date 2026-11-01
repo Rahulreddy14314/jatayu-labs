@@ -88,10 +88,11 @@ export default function ComponentBento() {
 
           <Link
             href="/projects/bio-bus"
-            className="btn-primary group px-5 py-2.5 rounded-lg text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#10F5A0]"
+            className="btn-primary group inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-[0_4px_20px_rgba(244,244,240,0.15)] hover:bg-[#D4FF00] hover:shadow-[0_0_25px_rgba(212,255,0,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D4FF00]"
+            style={{ backgroundColor: '#F4F4F0', color: '#050608' }}
           >
-            <span className="text-[#090A0C]">Explore the research / Research collaboration</span>
-            <ArrowUpRight className="w-4 h-4 text-[#090A0C] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span className="font-semibold text-[#050608]" style={{ color: '#050608' }}>Explore the research</span>
+            <ArrowUpRight className="w-4 h-4 text-[#050608] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#050608', stroke: '#050608' }} />
           </Link>
         </div>
 

@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 py-16 relative">
+      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 pt-32 pb-20 relative">
         <section className="page-hero border-b border-[#292C33] pb-12 mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#292C33] bg-[#101217] mb-4">
             <span className="w-2 h-2 rounded-full bg-[#668CFF]" />
@@ -65,15 +65,15 @@ export default function ContactPage() {
                 </div>
 
                 <div
-                  style={{ ['--card-aura' as string]: '#FF9E3B' }}
-                  className="metallic-border ambient-beam cryo-glass p-5 rounded-2xl"
+                  style={{ ['--card-aura' as string]: '#668CFF' }}
+                  className="optical-glass p-5 rounded-2xl"
                 >
                   <h4 className="text-sm font-medium text-[#F4F4F0] mb-1 flex items-center justify-between">
                     <span>Institutional Pilots</span>
-                    <span className="text-[10px] font-mono text-[#FF9E3B]">SkillSynthesis</span>
+                    <span className="text-[10px] font-mono text-[#668CFF]">SkillSynth</span>
                   </h4>
                   <p className="m-0 leading-relaxed text-xs">
-                    University career centers and training academies exploring SkillSynthesis employability intelligence.
+                    University career centers and training academies exploring SkillSynth employability intelligence.
                   </p>
                 </div>
               </div>

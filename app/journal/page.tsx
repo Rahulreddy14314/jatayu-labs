@@ -13,7 +13,7 @@ export default function JournalPage() {
   return (
     <>
       <Navbar />
-      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 py-16 relative">
+      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 pt-32 pb-20 relative">
         <section className="page-hero border-b border-[#292C33] pb-12 mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#292C33] bg-[#101217] mb-4">
             <span className="w-2 h-2 rounded-full bg-[#668CFF]" />
@@ -52,8 +52,8 @@ export default function JournalPage() {
             <span className="px-3 py-1 rounded-lg border border-[#292C33] text-[#92969F] hover:text-[#B87BFF] transition-colors">
               Uploaded Intelligence
             </span>
-            <span className="px-3 py-1 rounded-lg border border-[#292C33] text-[#92969F] hover:text-[#FF9E3B] transition-colors">
-              SkillSynthesis
+            <span className="px-3 py-1 rounded-lg border border-[#292C33] text-[#92969F] hover:text-[#668CFF] transition-colors">
+              SkillSynth
             </span>
           </div>
         </section>

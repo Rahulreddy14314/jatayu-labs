@@ -23,40 +23,40 @@ const initiatives: InitiativeItem[] = [
     id: 'sense',
     name: 'Project SENSE',
     domain: 'Wearable Interface',
-    role: 'Wearable product project',
+    role: 'Wearable haptic belt',
     stage: 'Prototype direction',
     slug: '/projects/sense',
-    auraColor: '#00F0FF',
+    auraColor: '#668CFF',
     icon: Compass,
   },
   {
     id: 'bio-bus',
     name: 'Bio-Bus (OI)',
     domain: 'Biological Computing',
-    role: 'Research initiative',
+    role: 'Hardware wetware interface',
     stage: 'Research phase',
     slug: '/projects/bio-bus',
-    auraColor: '#10F5A0',
+    auraColor: '#2554FF',
     icon: Dna,
   },
   {
     id: 'uploaded',
     name: 'Uploaded Intelligence',
     domain: 'Cognitive Technology',
-    role: 'Long-term research concept',
+    role: 'Personal memory representations',
     stage: 'Concept exploration',
     slug: '/projects/uploaded-intelligence',
-    auraColor: '#B87BFF',
+    auraColor: '#668CFF',
     icon: Brain,
   },
   {
     id: 'skill',
-    name: 'SkillSynthesis',
+    name: 'SkillSynth',
     domain: 'Employability AI',
-    role: 'AI employability platform',
+    role: 'AI conversational engine',
     stage: 'Product development',
-    slug: '/projects/skillsynthesis',
-    auraColor: '#FF9E3B',
+    slug: '/projects/skillsynth',
+    auraColor: '#2554FF',
     icon: Sparkles,
   },
 ];
@@ -65,16 +65,17 @@ export default function Stats() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="border-b border-[#292C33] bg-[#090A0C] py-16">
+    <section className="border-b border-[#292C33] bg-[#050608] py-16">
       <Container>
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
-          <span className="uppercase tracking-[0.2em] text-[#668CFF]">
-            FRONTIER MATURITY &amp; ARCHITECTURE STRIP
+          <span className="uppercase tracking-[0.2em] text-[#668CFF] flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] shadow-[0_0_6px_#D4FF00]" />
+            FRONTIER MATURITY &amp; ARCHITECTURE MATRIX
           </span>
-          <span className="text-[#92969F]">TRANSPARENT STAGE TAXONOMY // ZERO FAKE METRICS</span>
+          <span className="text-[#92969F]">TRANSPARENT TAXONOMY // ZERO FAKE METRICS</span>
         </div>
 
-        {/* 4-Column Metallic-Glass Status Strip */}
+        {/* 4-Column Optical-Glass Status Strip */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {initiatives.map((item) => {
             const Icon = item.icon;
@@ -83,8 +84,7 @@ export default function Stats() {
               <Link
                 key={item.id}
                 href={item.slug}
-                style={{ ['--card-aura' as string]: item.auraColor }}
-                className="group block metallic-border ambient-beam cryo-glass rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#668CFF]"
+                className="group block optical-glass optical-glass-interactive rounded-xl p-6 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D4FF00]"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div

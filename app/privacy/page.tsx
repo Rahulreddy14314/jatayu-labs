@@ -12,7 +12,7 @@ export default function PrivacyPage() {
   return (
     <>
       <Navbar />
-      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 py-16 relative">
+      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 pt-32 pb-20 relative">
         <section className="page-hero border-b border-[#292C33] pb-12 mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#292C33] bg-[#101217] mb-4">
             <span className="w-2 h-2 rounded-full bg-[#668CFF]" />
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
               </p>
               <ul className="list-disc pl-5 space-y-2 text-xs">
                 <li>Evaluate project collaboration fit and respond to technical proposals.</li>
-                <li>Coordinate pilot deployments for Project SENSE and SkillSynthesis.</li>
+                <li>Coordinate pilot deployments for Project SENSE and SkillSynth.</li>
                 <li>Send occasional, requested research updates and Lab Log publications.</li>
               </ul>
             </div>

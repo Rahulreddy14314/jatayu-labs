@@ -15,7 +15,7 @@ export default function ResearchPage() {
   return (
     <>
       <Navbar />
-      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 py-16 relative">
+      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 pt-32 pb-20 relative">
         {/* Ambient Top Glow */}
         <div className="absolute top-10 left-1/3 w-[600px] h-[350px] bg-[#668CFF]/[0.035] blur-[150px] pointer-events-none rounded-full" />
 

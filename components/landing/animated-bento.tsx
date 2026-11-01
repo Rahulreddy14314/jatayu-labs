@@ -7,53 +7,36 @@ import { ArrowUpRight, Compass, Dna, Brain, Sparkles } from "lucide-react";
 import Heading from "./heading";
 import SubHeading from "./subheading";
 import Container from "./container";
+import { ProjectCardVisual } from "./ProjectCardVisual";
 import { projects, type Project, type MaturityStage } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
 const stageStyles: Record<MaturityStage, { border: string; text: string; bg: string; dot: string }> = {
   'Prototype direction': {
-    border: 'border-[#00F0FF]/40',
-    text: 'text-[#00F0FF]',
-    bg: 'bg-[#00F0FF]/10',
-    dot: 'bg-[#00F0FF]',
+    border: 'border-[#668CFF]/40',
+    text: 'text-[#668CFF]',
+    bg: 'bg-[#668CFF]/10',
+    dot: 'bg-[#D4FF00]',
   },
   'Product development': {
-    border: 'border-[#FF9E3B]/40',
-    text: 'text-[#FF9E3B]',
-    bg: 'bg-[#FF9E3B]/10',
-    dot: 'bg-[#FF9E3B]',
+    border: 'border-[#668CFF]/40',
+    text: 'text-[#668CFF]',
+    bg: 'bg-[#668CFF]/10',
+    dot: 'bg-[#D4FF00]',
   },
   'Research phase': {
-    border: 'border-[#10F5A0]/40',
-    text: 'text-[#10F5A0]',
-    bg: 'bg-[#10F5A0]/10',
-    dot: 'bg-[#10F5A0]',
+    border: 'border-[#668CFF]/40',
+    text: 'text-[#668CFF]',
+    bg: 'bg-[#668CFF]/10',
+    dot: 'bg-[#D4FF00]',
   },
   'Concept exploration': {
-    border: 'border-[#B87BFF]/40',
-    text: 'text-[#B87BFF]',
-    bg: 'bg-[#B87BFF]/10',
-    dot: 'bg-[#B87BFF]',
+    border: 'border-[#668CFF]/40',
+    text: 'text-[#668CFF]',
+    bg: 'bg-[#668CFF]/10',
+    dot: 'bg-[#668CFF]',
   },
 };
-
-function BentoVisual({ project }: { project: Project }) {
-  return (
-    <div className={`project-visual visual-${project.slug} relative h-[200px] w-full bg-[#11141a] border-b border-[#292C33] overflow-hidden`}>
-      <span className="visual-grid" />
-      <span className="visual-orbit orbit-one" />
-      <span className="visual-orbit orbit-two" />
-      <span className="visual-core" />
-      <span className="visual-caption absolute bottom-3 left-4 text-[9px] font-mono tracking-widest text-[#92969F] px-2.5 py-1 rounded bg-[#090A0C]/80 border border-[#292C33]">
-        {project.slug === 'sense' ? 'HARDWARE PROTOTYPE' : 'CONCEPTUAL VISUAL'}
-      </span>
-      <span
-        className="absolute top-3 right-4 w-2 h-2 rounded-full animate-pulse"
-        style={{ backgroundColor: project.auraColor, boxShadow: `0 0 12px ${project.auraColor}` }}
-      />
-    </div>
-  );
-}
 
 function ProjectBentoCard({ project }: { project: Project }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -80,9 +63,9 @@ function ProjectBentoCard({ project }: { project: Project }) {
         whileHover={shouldReduceMotion ? {} : { y: -3 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
         style={{ ['--card-aura' as string]: project.auraColor }}
-        className="h-full flex flex-col justify-between metallic-border ambient-beam cryo-glass rounded-2xl overflow-hidden shadow-lg transition-all duration-300"
+        className="h-full flex flex-col justify-between optical-glass optical-glass-interactive rounded-2xl overflow-hidden shadow-lg transition-all duration-300"
       >
-        <BentoVisual project={project} />
+        <ProjectCardVisual project={project} />
 
         <div className="p-6 sm:p-7 flex flex-col justify-between flex-grow space-y-6">
           <div>
@@ -134,7 +117,7 @@ function ProjectBentoCard({ project }: { project: Project }) {
 
 export default function AnimatedBento() {
   return (
-    <section className="py-24 border-b border-[#292C33] bg-[#090A0C]">
+    <section className="py-24 border-b border-[#292C33] bg-[#050608]">
       <Container>
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-16 pb-6 border-b border-[#292C33]">

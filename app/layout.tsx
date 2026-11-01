@@ -50,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} dark`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${spaceGrotesk.variable} ${inter.variable} dark`}>
       <body className="bg-[#090A0C] text-[#F4F4F0] font-sans antialiased selection:bg-[#668CFF]/30 selection:text-[#F4F4F0]">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

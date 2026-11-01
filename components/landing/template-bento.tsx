@@ -52,7 +52,7 @@ function PillarCard({ pillar }: { pillar: typeof pillars[0] }) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       style={{ ['--card-aura' as string]: '#668CFF' }}
-      className="group relative metallic-border ambient-beam cryo-glass p-8 rounded-2xl flex flex-col justify-between min-h-[280px] shadow-lg transition-all duration-300 hover:-translate-y-1"
+      className="group relative optical-glass optical-glass-interactive p-8 rounded-2xl flex flex-col justify-between min-h-[280px] shadow-lg transition-all duration-300"
     >
       <div className="flex items-center justify-between">
         <span className="text-xs font-mono font-semibold text-[#668CFF] px-2.5 py-0.5 rounded-full border border-[#668CFF]/30 bg-[#668CFF]/10">
@@ -77,7 +77,7 @@ function PillarCard({ pillar }: { pillar: typeof pillars[0] }) {
 
 export default function TemplateBento() {
   return (
-    <section className="py-24 border-b border-[#292C33] bg-[#090A0C] relative">
+    <section className="py-24 border-b border-[#292C33] bg-[#050608] relative">
       <Container className="relative z-10">
         {/* Section Header */}
         <div className="max-w-2xl mb-16 pb-6 border-b border-[#292C33]">

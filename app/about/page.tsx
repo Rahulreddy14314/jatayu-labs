@@ -13,7 +13,7 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 py-16 relative">
+      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 pt-32 pb-20 relative">
         <section className="page-hero border-b border-[#292C33] pb-12 mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#292C33] bg-[#101217] mb-4">
             <span className="w-2 h-2 rounded-full bg-[#668CFF]" />
@@ -47,7 +47,7 @@ export default function AboutPage() {
                 We believe the most important technological breakthroughs emerge when hardware engineering, biological sciences, and computing intelligence intersect. Rather than pursuing incremental SaaS features or speculative hype, we focus on hard engineering and foundational scientific questions.
               </p>
               <p className="m-0">
-                Our work spans the physical reality of wearable tactile devices (Project SENSE), the frontiers of biological computing and organoid intelligence (Bio-Bus), deep cognitive representations (Uploaded Intelligence), and AI platforms that expand human capability (SkillSynthesis).
+                Our work spans the physical reality of wearable tactile devices (Project SENSE), the frontiers of biological computing and organoid intelligence (Bio-Bus), deep cognitive representations (Uploaded Intelligence), and AI platforms that expand human capability (SkillSynth).
               </p>
             </div>
           </div>

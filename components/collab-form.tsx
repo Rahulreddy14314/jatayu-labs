@@ -13,10 +13,10 @@ const initialState: IntakeState = {
 
 const PROJECT_TRACKS = [
   { id: 'General', label: 'General Lab', color: '#668CFF' },
-  { id: 'Project SENSE', label: 'Project SENSE', color: '#00F0FF' },
-  { id: 'Bio-Bus (Organoid Intelligence)', label: 'Bio-Bus / OI', color: '#10F5A0' },
-  { id: 'Uploaded Intelligence', label: 'Uploaded Intelligence', color: '#B87BFF' },
-  { id: 'SkillSynthesis', label: 'SkillSynthesis', color: '#FF9E3B' },
+  { id: 'Project SENSE', label: 'Project SENSE', color: '#668CFF' },
+  { id: 'Bio-Bus (Organoid Intelligence)', label: 'Bio-Bus / OI', color: '#2554FF' },
+  { id: 'Uploaded Intelligence', label: 'Uploaded Intelligence', color: '#668CFF' },
+  { id: 'SkillSynth', label: 'SkillSynth', color: '#2554FF' },
 ] as const;
 
 export function CollabForm({ defaultProject = 'General' }: { defaultProject?: string }) {
@@ -147,17 +147,18 @@ export function CollabForm({ defaultProject = 'General' }: { defaultProject?: st
         <button
           type="submit"
           disabled={isPending}
-          className="btn-primary group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-mono text-xs uppercase tracking-wider font-semibold disabled:opacity-50"
+          className="btn-primary group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full font-mono text-xs uppercase tracking-wider font-semibold disabled:opacity-50 transition-all duration-300 shadow-[0_4px_20px_rgba(244,244,240,0.15)] hover:bg-[#D4FF00] hover:shadow-[0_0_25px_rgba(212,255,0,0.4)] cursor-pointer"
+          style={{ backgroundColor: '#F4F4F0', color: '#050608' }}
         >
           {isPending ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin text-[#090A0C]" />
-              <span className="text-[#090A0C]">Transmitting...</span>
+              <Loader2 className="w-4 h-4 animate-spin text-[#050608]" style={{ color: '#050608', stroke: '#050608' }} />
+              <span className="font-semibold text-[#050608]" style={{ color: '#050608' }}>Transmitting...</span>
             </>
           ) : (
             <>
-              <span className="text-[#090A0C]">Transmit Inquiry</span>
-              <ArrowUpRight className="w-4 h-4 text-[#090A0C] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span className="font-semibold text-[#050608]" style={{ color: '#050608' }}>Transmit Inquiry</span>
+              <ArrowUpRight className="w-4 h-4 text-[#050608] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#050608', stroke: '#050608' }} />
             </>
           )}
         </button>

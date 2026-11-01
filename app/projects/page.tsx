@@ -7,6 +7,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import Navbar from '@/components/landing/navbar'
 import Footer from '@/components/landing/footer'
 import { SectionLabel } from '@/components/site'
+import { ProjectCardVisual } from '@/components/landing/ProjectCardVisual'
 import { projects, type Project, type MaturityStage } from '@/lib/projects'
 import { cn } from '@/lib/utils'
 
@@ -34,21 +35,9 @@ function ProjectCardItem({ project }: { project: Project }) {
         whileHover={shouldReduceMotion ? {} : { y: -3 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
         style={{ ['--card-aura' as string]: project.auraColor }}
-        className="h-full flex flex-col justify-between metallic-border ambient-beam cryo-glass rounded-2xl overflow-hidden shadow-lg transition-all duration-300"
+        className="h-full flex flex-col justify-between optical-glass optical-glass-interactive rounded-2xl overflow-hidden shadow-lg transition-all duration-300"
       >
-        <div className={`project-visual visual-${project.slug} relative h-[210px] w-full bg-[#11141a] border-b border-[#292C33] overflow-hidden`}>
-          <span className="visual-grid" />
-          <span className="visual-orbit orbit-one" />
-          <span className="visual-orbit orbit-two" />
-          <span className="visual-core" />
-          <span className="visual-caption absolute bottom-3 left-4 text-[9px] font-mono tracking-widest text-[#92969F] px-2.5 py-1 rounded bg-[#090A0C]/80 border border-[#292C33]">
-            {project.slug === 'sense' ? 'HARDWARE PROTOTYPE' : 'CONCEPTUAL VISUAL'}
-          </span>
-          <span
-            className="absolute top-3 right-4 w-2 h-2 rounded-full animate-pulse"
-            style={{ backgroundColor: project.auraColor, boxShadow: `0 0 12px ${project.auraColor}` }}
-          />
-        </div>
+        <ProjectCardVisual project={project} />
 
         <div className="p-7 flex flex-col justify-between flex-grow space-y-6">
           <div>
@@ -112,7 +101,7 @@ export default function ProjectsPage() {
   return (
     <>
       <Navbar />
-      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 py-16">
+      <main className="shell max-w-[1240px] mx-auto px-6 md:px-8 pt-32 pb-20">
         <section className="page-hero border-b border-[#292C33] pb-12 mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#292C33] bg-[#101217] mb-4">
             <span className="w-2 h-2 rounded-full bg-[#668CFF]" />
@@ -175,10 +164,11 @@ export default function ProjectsPage() {
           </div>
           <Link
             href="/research"
-            className="btn-primary group px-6 py-3 rounded-lg text-xs font-semibold shrink-0"
+            className="btn-primary group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-xs font-semibold uppercase tracking-wider shrink-0 transition-all duration-300 shadow-[0_4px_20px_rgba(244,244,240,0.15)] hover:bg-[#D4FF00] hover:shadow-[0_0_25px_rgba(212,255,0,0.4)]"
+            style={{ backgroundColor: '#F4F4F0', color: '#050608' }}
           >
-            <span className="text-[#090A0C]">Open Research Map</span>
-            <ArrowUpRight className="w-4 h-4 text-[#090A0C] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span className="font-semibold text-[#050608]" style={{ color: '#050608' }}>Open Research Map</span>
+            <ArrowUpRight className="w-4 h-4 text-[#050608] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#050608', stroke: '#050608' }} />
           </Link>
         </section>
       </main>

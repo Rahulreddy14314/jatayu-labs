@@ -12,7 +12,7 @@ const hasPublishedLogs = false;
 
 export default function Testimonial() {
   return (
-    <section className="py-24 border-b border-[#292C33] bg-[#090A0C] relative">
+    <section className="py-24 border-b border-[#292C33] bg-[#050608] relative">
       <Container className="relative z-10">
         {/* SECTION 05: LATEST EXPERIMENTS (LAB LOG) */}
         {hasPublishedLogs ? (
@@ -33,7 +33,7 @@ export default function Testimonial() {
           </div>
         ) : (
           <div className="mb-20 pb-12 border-b border-[#292C33]">
-            <div className="metallic-border ambient-beam cryo-glass p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="optical-glass p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3.5">
                 <div className="w-9 h-9 rounded-lg bg-[#090A0C] border border-[#292C33] flex items-center justify-center text-[#668CFF]">
                   <Terminal className="w-4 h-4" />
@@ -79,27 +79,30 @@ export default function Testimonial() {
               We are open to conversations with researchers, engineers, industrial partners, institutions, early customers, and prospective team members.
             </SubHeading>
 
-            <div className="metallic-border ambient-beam cryo-glass p-6 rounded-2xl space-y-3.5 text-xs text-[#92969F]">
+            <div className="optical-glass p-6 rounded-2xl space-y-3.5 text-xs text-[#92969F]">
               <div className="font-mono text-[#668CFF] uppercase tracking-wider text-[10px] flex items-center justify-between">
                 <span>DIRECT CHANNELS</span>
-                <span className="text-emerald-400">&bull; MONITORED</span>
+                <span className="text-[#D4FF00] flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] shadow-[0_0_6px_#D4FF00]" />
+                  ACTIVE MONITORED
+                </span>
               </div>
               <p className="m-0 leading-relaxed">
                 Direct Inquiries: <a href="mailto:hello@jatayulabs.com" className="text-[#F4F4F0] font-mono underline hover:text-[#668CFF]">hello@jatayulabs.com</a>
               </p>
               <p className="m-0 leading-relaxed">
-                SkillSynthesis Institutional Track: <Link href="/projects/skillsynthesis" className="text-[#FF9E3B] underline">Academic Pilot</Link>
+                SkillSynth Institutional Track: <Link href="/projects/skillsynth" className="text-[#668CFF] underline">Academic Pilot</Link>
               </p>
               <p className="m-0 leading-relaxed">
-                Bio-Bus &amp; Organoid Intelligence Track: <Link href="/projects/bio-bus" className="text-[#10F5A0] underline">Wetware Research</Link>
+                Bio-Bus &amp; Organoid Intelligence Track: <Link href="/projects/bio-bus" className="text-[#668CFF] underline">Wetware Research</Link>
               </p>
               <p className="m-0 leading-relaxed">
-                Project SENSE Wearable Haptics: <Link href="/projects/sense" className="text-[#00F0FF] underline">Industrial Pilot</Link>
+                Project SENSE Wearable Haptics: <Link href="/projects/sense" className="text-[#668CFF] underline">Industrial Pilot</Link>
               </p>
             </div>
           </div>
 
-          <div className="lg:col-span-7 metallic-border ambient-beam cryo-glass p-6 sm:p-9 rounded-2xl shadow-2xl">
+          <div className="lg:col-span-7 optical-glass p-6 sm:p-9 rounded-2xl shadow-2xl">
             <div className="mb-6 pb-4 border-b border-[#292C33] flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-normal text-[#F4F4F0] m-0">Collaborator Intake Deck</h3>
