@@ -189,7 +189,7 @@ export function ResearchMapMotion({ className }: { className?: string }) {
               <circle r="42" fill="#101217" stroke="#292C33" strokeWidth="1" />
               <circle r="36" fill="none" stroke="#668CFF" strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
               <text textAnchor="middle" y="-4" fill="#F4F4F0" fontSize="10" fontFamily="monospace" fontWeight="bold">
-                JATAYU
+                KRITAM
               </text>
               <text textAnchor="middle" y="10" fill="#668CFF" fontSize="8" fontFamily="monospace">
                 CORE LAB

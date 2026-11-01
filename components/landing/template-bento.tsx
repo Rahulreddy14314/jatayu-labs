@@ -88,7 +88,7 @@ export default function TemplateBento() {
             Our Approach &mdash; <em>Build &middot; Explore &middot; Iterate &middot; Collaborate</em>
           </Heading>
           <SubHeading variant="medium" className="mt-4 text-[#92969F]">
-            Jatayu Labs brings hardware engineering, software development, and exploratory research together to tackle difficult problems with care, clarity, and momentum.
+            Kritam Labs brings hardware engineering, software development, and exploratory research together to tackle difficult problems with care, clarity, and momentum.
           </SubHeading>
         </div>
 

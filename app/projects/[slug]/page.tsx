@@ -220,7 +220,7 @@ export default async function ProjectPage({
                 </h2>
 
                 <p className="text-sm text-[#92969F] leading-relaxed">
-                  Jatayu Labs maintains strict boundaries between physical working hardware, software in development, active laboratory research, and long-term concepts.
+                  Kritam Labs maintains strict boundaries between physical working hardware, software in development, active laboratory research, and long-term concepts.
                 </p>
 
                 <div className="optical-glass p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

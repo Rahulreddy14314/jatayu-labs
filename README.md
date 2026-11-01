@@ -1,6 +1,6 @@
-# Jatayu Labs
+# Kritam Labs
 
-A dark editorial research-lab site for Jatayu Labs, built with Next.js App Router.
+A dark editorial research-lab site for Kritam Labs, built with Next.js App Router.
 
 ## Content
 

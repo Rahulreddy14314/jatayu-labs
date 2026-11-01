@@ -88,7 +88,7 @@ export default function Testimonial() {
                 </span>
               </div>
               <p className="m-0 leading-relaxed">
-                Direct Inquiries: <a href="mailto:hello@jatayulabs.com" className="text-[#F4F4F0] font-mono underline hover:text-[#668CFF]">hello@jatayulabs.com</a>
+                Direct Inquiries: <a href="mailto:hello@kritamlabs.com" className="text-[#F4F4F0] font-mono underline hover:text-[#668CFF]">hello@kritamlabs.com</a>
               </p>
               <p className="m-0 leading-relaxed">
                 SkillSynth Institutional Track: <Link href="/projects/skillsynth" className="text-[#668CFF] underline">Academic Pilot</Link>

@@ -5,7 +5,7 @@ import { SectionLabel } from '@/components/site'
 import { ArrowUpRight, Clock, Filter, Terminal, Sparkles } from 'lucide-react'
 
 export const metadata = {
-  title: 'Journal & Lab Log | Jatayu Labs',
+  title: 'Journal & Lab Log | Kritam Labs',
   description: 'Chronological feed of prototype changes, test results, and empirical findings.',
 }
 

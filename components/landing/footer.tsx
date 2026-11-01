@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import Container from './container';
-import { JatayuLogo } from './JatayuLogo';
+import { KritamEmblem } from './KritamLogo';
 import { projects } from '@/lib/projects';
 
 export default function Footer() {
@@ -17,8 +17,8 @@ export default function Footer() {
               href="/"
               className="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.22em] text-[#F4F4F0] hover:text-[#668CFF] transition-colors"
             >
-              <JatayuLogo className="w-6 h-6" />
-              <span className="font-heading">JATAYU LABS</span>
+              <KritamEmblem className="w-6 h-6" />
+              <span className="font-heading tracking-[0.24em]">KRITAM LABS</span>
             </Link>
 
             <p className="text-xs text-[#92969F] leading-relaxed max-w-sm">
@@ -91,10 +91,10 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="mailto:hello@jatayulabs.com"
+                    href="mailto:hello@kritamlabs.com"
                     className="hover:text-[#F4F4F0] transition-colors"
                   >
-                    hello@jatayulabs.com
+                    hello@kritamlabs.com
                   </a>
                 </li>
                 <li>
@@ -109,7 +109,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono uppercase tracking-widest text-[#92969F]">
-          <div>&copy; {new Date().getFullYear()} Jatayu Labs. All rights reserved.</div>
+          <div>&copy; {new Date().getFullYear()} Kritam Labs. All rights reserved.</div>
           <div>No fabricated metrics &middot; Transparent research milestones</div>
         </div>
       </Container>

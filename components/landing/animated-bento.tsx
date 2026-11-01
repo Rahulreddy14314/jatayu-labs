@@ -60,10 +60,10 @@ function ProjectBentoCard({ project }: { project: Project }) {
       <motion.div
         ref={cardRef}
         onMouseMove={handleMouseMove}
-        whileHover={shouldReduceMotion ? {} : { y: -3 }}
+        whileHover={shouldReduceMotion ? {} : { y: -4 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
         style={{ ['--card-aura' as string]: project.auraColor }}
-        className="h-full flex flex-col justify-between optical-glass optical-glass-interactive rounded-2xl overflow-hidden shadow-lg transition-all duration-300"
+        className="h-full flex flex-col justify-between optical-glass optical-glass-interactive rounded-2xl overflow-hidden shadow-xl border border-white/[0.08] hover:border-white/20 hover:border-t-white/35 transition-all duration-300"
       >
         <ProjectCardVisual project={project} />
 
@@ -89,7 +89,7 @@ function ProjectBentoCard({ project }: { project: Project }) {
             <h3 className="text-xl sm:text-2xl font-normal text-[#F4F4F0] flex items-center justify-between gap-2 m-0 group-hover:text-white transition-colors">
               <span>{project.name}</span>
               <ArrowUpRight
-                className="w-4 h-4 text-[#92969F] transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="w-4 h-4 text-[#92969F] transition-all duration-200 group-hover:translate-x-1 group-hover:-translate-y-1"
                 style={{ color: project.auraColor }}
               />
             </h3>

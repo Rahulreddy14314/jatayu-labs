@@ -4,8 +4,8 @@ import { SectionLabel } from '@/components/site'
 import { ShieldCheck, Lock, EyeOff, Server } from 'lucide-react'
 
 export const metadata = {
-  title: 'Privacy Policy | Jatayu Labs',
-  description: 'Plainly stated data privacy and subscriber policy for Jatayu Labs.',
+  title: 'Privacy Policy | Kritam Labs',
+  description: 'Plainly stated data privacy and subscriber policy for Kritam Labs.',
 }
 
 export default function PrivacyPage() {
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
                 We do not employ third-party advertising trackers or behavioral tracking cookies. Inquiry data is retained only for the duration of the collaborative evaluation or active partnership.
               </p>
               <p className="m-0">
-                You may request complete deletion of your contact records or unsubscribe from updates at any time by emailing <a href="mailto:hello@jatayulabs.com" className="text-[#668CFF] underline">hello@jatayulabs.com</a>.
+                You may request complete deletion of your contact records or unsubscribe from updates at any time by emailing <a href="mailto:hello@kritamlabs.com" className="text-[#668CFF] underline">hello@kritamlabs.com</a>.
               </p>
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function PrivacyPage() {
             <Lock className="w-5 h-5 text-[#668CFF] shrink-0 mt-0.5" />
             <div className="text-xs text-[#92969F] leading-relaxed">
               <strong className="text-[#F4F4F0] block mb-1">Zero Third-Party Data Monetization</strong>
-              Jatayu Labs does not sell, rent, lease, or trade personal contact information to any data brokers or commercial advertisers under any circumstances.
+              Kritam Labs does not sell, rent, lease, or trade personal contact information to any data brokers or commercial advertisers under any circumstances.
             </div>
           </div>
         </section>

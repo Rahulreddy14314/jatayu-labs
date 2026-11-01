@@ -104,16 +104,6 @@ export function SenseScrollExplosion() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-transparent to-[#050608]/90 pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(37,84,255,0.18)_0%,transparent_60%)] pointer-events-none" />
 
-      {/* Fine Coordinate Grid */}
-      <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #668CFF 1px, transparent 1px), linear-gradient(to bottom, #668CFF 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-        }}
-      />
-
       {/* =========================================================================
           LAYER B: THE 5-PART INTERACTIVE 3D HARDWARE POD THAT OPENS AS YOU SCROLL
          ========================================================================= */}

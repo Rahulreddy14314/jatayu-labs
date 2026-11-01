@@ -5,9 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight, Search, Command } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { JatayuLogo } from "./JatayuLogo";
+import { KritamEmblem } from "./KritamLogo";
 
-export { JatayuLogo as JatayuMonogram };
+export { KritamEmblem as JatayuLogo, KritamEmblem as JatayuMonogram };
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -68,9 +68,9 @@ export default function Navbar() {
                 href="/"
                 className="flex items-center gap-3 shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D4FF00] rounded-lg"
               >
-                <JatayuLogo className="w-6 h-6" />
-                <span className="tracking-[0.22em] font-heading font-semibold text-xs sm:text-sm text-[#F4F4F0] hover:text-white transition-colors">
-                  JATAYU LABS
+                <KritamEmblem className="w-6 h-6" />
+                <span className="tracking-[0.24em] font-heading font-semibold text-xs sm:text-sm text-[#F4F4F0] hover:text-white transition-colors">
+                  KRITAM LABS
                 </span>
               </Link>
 
@@ -226,7 +226,7 @@ export default function Navbar() {
             </div>
 
             <div className="px-4 py-2.5 border-t border-[#292C33] bg-[#050608] flex items-center justify-between text-[10px] font-mono text-[#92969F]">
-              <span>Jatayu Labs Directory</span>
+              <span>Kritam Labs Directory</span>
               <span>↑↓ Navigate &middot; ↵ Select</span>
             </div>
           </div>

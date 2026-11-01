@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { Compass, Activity, Brain, Sparkles, Radio, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Project } from '@/lib/projects';
 
@@ -14,93 +13,36 @@ interface ProjectCardVisualProps {
 export function ProjectCardVisual({ project, className }: ProjectCardVisualProps) {
   const shouldReduceMotion = useReducedMotion();
 
-  // Mapping authentic dark-graded photography per project
-  const photographyConfig: Record<string, { url: string; alt: string }> = {
-    sense: {
-      url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=85',
-      alt: 'Macro hardware circuitry and tactile actuator workbench',
-    },
-    'bio-bus': {
-      url: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=85',
-      alt: 'Laboratory wetware electrophysiology culture dish',
-    },
-    'uploaded-intelligence': {
-      url: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=85',
-      alt: 'High-density optical computing server cluster and synaptic fibers',
-    },
-    skillsynth: {
-      url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1000&q=85',
-      alt: 'Studio acoustic monitoring equipment and conversational DSP interface',
-    },
-  };
-
-  const photo = photographyConfig[project.slug] || photographyConfig.sense;
-  const badgeText = project.slug === 'sense' ? 'HARDWARE PROTOTYPE' : 'CONCEPTUAL VISUAL';
+  const badgeText =
+    project.slug === 'sense'
+      ? 'HARDWARE PROTOTYPE'
+      : project.slug === 'bio-bus'
+      ? 'WETWARE RESEARCH'
+      : project.slug === 'uploaded-intelligence'
+      ? 'COGNITIVE LATTICE'
+      : 'CONVERSATIONAL AI';
 
   return (
     <div className={cn("relative h-56 w-full overflow-hidden bg-[#050608] border-b border-[#292C33] group", className)}>
-      {/* LAYER 1: AUTHENTIC PHOTOGRAPHY / REAL SENSE HARDWARE */}
-      {project.slug === 'sense' ? (
-        <>
-          {/* Default Studio View: Top-Left Hero Waist Belt Crop */}
-          <div
-            className="absolute inset-0 bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:162%_202%] bg-[position:0%_0%] bg-no-repeat transition-all duration-700 ease-out group-hover:opacity-0 group-hover:scale-105"
-            style={{ filter: 'contrast(1.1) brightness(0.85)' }}
-          />
+      {/* Visual Canvas by Project */}
+      {project.slug === 'sense' && <SenseVisual shouldReduceMotion={shouldReduceMotion} />}
+      {project.slug === 'bio-bus' && <BioBusVisual shouldReduceMotion={shouldReduceMotion} />}
+      {project.slug === 'uploaded-intelligence' && <UploadedIntelligenceVisual shouldReduceMotion={shouldReduceMotion} />}
+      {project.slug === 'skillsynth' && <SkillSynthVisual shouldReduceMotion={shouldReduceMotion} />}
 
-          {/* Hover View: Top-Right Exploded Pod Teardown Crop */}
-          <div
-            className="absolute inset-0 bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:265%_202%] bg-[position:100%_0%] bg-no-repeat opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
-            style={{ filter: 'contrast(1.15) brightness(0.9)' }}
-          />
+      {/* Optical Vignette & Edge Depth */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#090A0C] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 ring-1 ring-inset ring-white/[0.04] pointer-events-none rounded-t-2xl" />
 
-          {/* Interactive HUD Overlay on Hover */}
-          <div className="absolute top-3 left-3.5 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            <span className="text-[8px] font-mono uppercase tracking-wider text-[#D4FF00] bg-[#050608]/90 px-2 py-0.5 rounded border border-[#668CFF]/40 shadow-lg flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] animate-pulse" />
-              ESP32 CONTROL UNIT // 4-DIR HAPTIC MODULES
-            </span>
-          </div>
-        </>
-      ) : (
-        <img
-          src={photo.url}
-          alt={photo.alt}
-          className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-[0.34] group-hover:scale-105 group-hover:brightness-[0.45] transition-all duration-700 ease-out"
-          loading="lazy"
-        />
-      )}
-
-      {/* Optical Electric Cobalt Vignette & Midnight Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#090A0C] via-[#090A0C]/50 to-[#668CFF]/15 pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#090A0C_92%)] pointer-events-none" />
-
-      {/* Fine Coordinate Grid Overlay */}
-      <div
-        className="absolute inset-0 opacity-15 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #668CFF 1px, transparent 1px), linear-gradient(to bottom, #668CFF 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-      />
-
-      {/* LAYER 2: LIVE ANIMATED SVG CAD & TELEMETRY OVERLAY */}
-      <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
-        {project.slug === 'sense' && <SenseCadOverlay shouldReduceMotion={shouldReduceMotion} />}
-        {project.slug === 'bio-bus' && <BioBusCadOverlay shouldReduceMotion={shouldReduceMotion} />}
-        {project.slug === 'uploaded-intelligence' && <UploadedIntelligenceCadOverlay shouldReduceMotion={shouldReduceMotion} />}
-        {project.slug === 'skillsynth' && <SkillSynthCadOverlay shouldReduceMotion={shouldReduceMotion} />}
-      </div>
-
-      {/* LAYER 3: PERSISTENT CALLOUT BADGE & STATUS DOT */}
+      {/* Bottom-Left Clean Glass Pill */}
       <div className="absolute bottom-3 left-3.5 z-20 flex items-center gap-2">
-        <span className="text-[9px] font-mono tracking-widest text-[#F4F4F0] px-2.5 py-1 rounded bg-[#090A0C]/90 backdrop-blur-md border border-[#292C33] shadow-md flex items-center gap-1.5">
+        <span className="text-[9px] font-mono tracking-widest text-[#F4F4F0] px-2.5 py-1 rounded-full bg-[#090A0C]/90 backdrop-blur-md border border-[#292C33] shadow-md flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] shadow-[0_0_6px_#D4FF00]" />
           {badgeText}
         </span>
       </div>
 
+      {/* Top-Right Optical Aura Indicator */}
       <div className="absolute top-3 right-3.5 z-20">
         <span
           className="block w-2.5 h-2.5 rounded-full animate-pulse shadow-md"
@@ -115,268 +57,433 @@ export function ProjectCardVisual({ project, className }: ProjectCardVisualProps
 }
 
 // =========================================================================
-// 1. SENSE CAD OVERLAY: 8-Node Haptic Waist Ring + Rotating Directional Vector
+// 1. PROJECT SENSE: Unobstructed Studio Hardware + Cobalt Light Sweep + Sonar Rings
 // =========================================================================
-function SenseCadOverlay({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
+function SenseVisual({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Top Telemetry Stamp */}
-      <div className="absolute top-3 left-3.5 text-[8px] font-mono text-[#92969F] flex items-center gap-2">
-        <span className="text-[#668CFF]">IMU: 6-AXIS LOCKED</span>
-        <span>&middot;</span>
-        <span className="text-[#D4FF00]">LRA_ARRAY: 185Hz</span>
-      </div>
+    <div className="relative w-full h-full overflow-hidden">
+      {/* Studio View: Black Waist Belt & Haptic Pods */}
+      <div
+        className="absolute inset-0 bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:160%_200%] bg-[position:0%_0%] bg-no-repeat transition-all duration-700 ease-out group-hover:opacity-0 group-hover:scale-105"
+        style={{ filter: 'contrast(1.1) brightness(0.92)' }}
+      />
 
-      {/* 8-Node Circular Tactile Array */}
-      <div className="relative w-36 h-36 flex items-center justify-center">
-        {/* Concentric Haptic Wave Rings */}
+      {/* Hover View: Teardown Exploded Actuator Pod */}
+      <div
+        className="absolute inset-0 bg-[url('/images/sense-hardware-grid.jpg')] bg-[length:265%_200%] bg-[position:100%_0%] bg-no-repeat opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+        style={{ filter: 'contrast(1.15) brightness(0.95)' }}
+      />
+
+      {/* Cinematic Deep Radial Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,#050608_95%)] pointer-events-none" />
+
+      {/* Breathing Electric Cobalt Optical Light Sweep */}
+      {!shouldReduceMotion && (
         <motion.div
-          animate={shouldReduceMotion ? {} : { scale: [1, 1.25, 1], opacity: [0.3, 0.7, 0.3] }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 rounded-full border border-dashed border-[#668CFF]/50"
+          animate={{ x: ['-100%', '200%'] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', repeatDelay: 1.5 }}
+          className="absolute inset-y-0 w-1/2 pointer-events-none"
+          style={{
+            background:
+              'linear-gradient(90deg, transparent 0%, rgba(102,140,255,0.18) 50%, rgba(212,255,0,0.12) 65%, transparent 100%)',
+            transform: 'skewX(-20deg)',
+          }}
         />
-        <div className="absolute inset-3 rounded-full border border-[#668CFF]/30" />
-        <div className="absolute inset-7 rounded-full border border-[#292C33]" />
+      )}
 
-        {/* 8 Actuator Nodes */}
-        {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => {
-          const rad = (deg * Math.PI) / 180;
-          const x = 54 * Math.sin(rad);
-          const y = -54 * Math.cos(rad);
-          const isNorth = deg === 0;
-
-          return (
-            <div
-              key={deg}
-              style={{ transform: `translate(${x}px, ${y}px)` }}
-              className="absolute w-2 h-2 -ml-1 -mt-1 rounded-full flex items-center justify-center"
-            >
-              <div
-                className={cn(
-                  "w-2 h-2 rounded-full",
-                  isNorth ? "bg-[#D4FF00] shadow-[0_0_8px_#D4FF00]" : "bg-[#668CFF] shadow-[0_0_5px_#668CFF]"
-                )}
-              />
-            </div>
-          );
-        })}
-
-        {/* Sweeping Directional Vector Needle */}
-        <motion.div
-          animate={shouldReduceMotion ? {} : { rotate: 360 }}
-          transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
-          className="absolute w-24 h-24 flex items-center justify-center"
-        >
-          <div className="w-px h-12 bg-gradient-to-t from-transparent via-[#D4FF00] to-[#D4FF00] -translate-y-6" />
-          <div className="absolute top-0 w-1.5 h-1.5 rounded-full bg-[#D4FF00] shadow-[0_0_8px_#D4FF00]" />
-        </motion.div>
-
-        {/* Center Compass Core */}
-        <div className="w-7 h-7 rounded-full bg-[#050608]/90 border border-[#668CFF] flex items-center justify-center shadow-lg">
-          <Compass className="w-3.5 h-3.5 text-[#668CFF]" />
-        </div>
-      </div>
-
-      {/* Bottom Right Telemetry */}
-      <div className="absolute bottom-3 right-3.5 text-[8px] font-mono text-[#668CFF] flex items-center gap-1.5">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] animate-ping" />
-        <span>HEADING: 045&deg; [NE] &middot; LATENCY &lt;14.2ms</span>
-      </div>
-    </div>
-  );
-}
-
-// =========================================================================
-// 2. BIO-BUS CAD OVERLAY: 64-Channel MEA Grid + Oscilloscope Waveform
-// =========================================================================
-function BioBusCadOverlay({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
-  return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center px-6">
-      {/* Top Telemetry */}
-      <div className="absolute top-3 left-3.5 text-[8px] font-mono text-[#92969F] flex items-center gap-2">
-        <span className="text-[#668CFF]">OI_BUS // 15µA STIM_ACTIVE</span>
-        <span>&middot;</span>
-        <span className="text-[#D4FF00]">30 kHz SAMPLING</span>
-      </div>
-
-      <div className="w-full max-w-[280px] space-y-2">
-        {/* 64-Channel HD-MEA Microelectrode Array Dot Substrate */}
-        <div className="grid grid-cols-16 gap-1 p-2 rounded-lg border border-[#292C33] bg-[#050608]/80 backdrop-blur-sm">
-          {Array.from({ length: 32 }).map((_, i) => (
-            <div
-              key={i}
-              className={cn(
-                "w-1.5 h-1.5 rounded-[1px] transition-colors",
-                i % 9 === 0
-                  ? "bg-[#D4FF00] shadow-[0_0_6px_#D4FF00] animate-pulse"
-                  : i % 4 === 0
-                  ? "bg-[#668CFF]"
-                  : "bg-[#292C33]/60"
-              )}
+      {/* Concentric Delicate Sonar Rings Emanating From Actuator Center */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+        <div className="relative w-40 h-40 flex items-center justify-center">
+          {[0, 1, 2].map((idx) => (
+            <motion.div
+              key={idx}
+              animate={
+                shouldReduceMotion
+                  ? { opacity: 0.2 }
+                  : {
+                      scale: [0.75, 1.45],
+                      opacity: [0.55, 0],
+                    }
+              }
+              transition={{
+                duration: 3.2,
+                repeat: Infinity,
+                ease: 'easeOut',
+                delay: idx * 1.05,
+              }}
+              className="absolute inset-0 rounded-full border border-[#668CFF]/50"
             />
           ))}
-        </div>
 
-        {/* Live Scrolling Action-Potential Oscilloscope Wave */}
-        <div className="relative h-14 w-full rounded-lg border border-[#668CFF]/40 bg-[#050608]/90 overflow-hidden flex items-center px-2">
-          <svg className="w-full h-10 text-[#668CFF]" viewBox="0 0 260 40" preserveAspectRatio="none">
-            <motion.path
-              d="M0 20 L25 20 L30 5 L35 35 L40 12 L45 26 L50 20 L100 20 L105 2 L110 38 L115 8 L120 28 L125 20 L180 20 L185 6 L190 34 L195 14 L200 20 L260 20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, -100] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              strokeDasharray="6 3"
+          {/* Central Actuator Focus Node */}
+          <div className="relative w-3 h-3 rounded-full bg-[#D4FF00] shadow-[0_0_12px_#D4FF00] flex items-center justify-center">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#050608]" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// =========================================================================
+// 2. BIO-BUS: Glowing Bioluminescent Organoid Orb + Sinusoidal Silk Ribbons
+// =========================================================================
+function BioBusVisual({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
+  return (
+    <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-[#050608]">
+      {/* Background Deep Bioluminescent Radial Wash */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,84,255,0.2)_0%,rgba(5,6,8,0.95)_75%)] pointer-events-none" />
+
+      {/* Central Glowing Bioluminescent Organoid Orb */}
+      <div className="relative flex items-center justify-center">
+        {/* Soft Outer Aura */}
+        <motion.div
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  scale: [0.95, 1.1, 0.95],
+                  opacity: [0.4, 0.7, 0.4],
+                }
+          }
+          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute w-44 h-44 rounded-full bg-[#668CFF]/25 blur-2xl pointer-events-none"
+        />
+
+        {/* Acid Lime Inner Bioreactive Core Glow */}
+        <motion.div
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  scale: [1, 1.15, 1],
+                  opacity: [0.6, 0.95, 0.6],
+                }
+          }
+          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+          className="absolute w-24 h-24 rounded-full bg-[#D4FF00]/20 blur-xl pointer-events-none"
+        />
+
+        {/* Crisp Multilayer Organoid Core */}
+        <motion.div
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  scale: [0.98, 1.04, 0.98],
+                  rotate: [0, 180, 360],
+                }
+          }
+          transition={{
+            scale: { duration: 3.5, repeat: Infinity, ease: 'easeInOut' },
+            rotate: { duration: 25, repeat: Infinity, ease: 'linear' },
+          }}
+          className="relative w-24 h-24 rounded-full border border-[#668CFF]/50 bg-gradient-to-tr from-[#090A0C] via-[#101935] to-[#0A1226] flex items-center justify-center shadow-[0_0_35px_rgba(37,84,255,0.35)]"
+        >
+          {/* Inner Organoid Core Structure */}
+          <div className="w-14 h-14 rounded-full border border-[#D4FF00]/40 bg-[#D4FF00]/10 flex items-center justify-center">
+            <div className="w-5 h-5 rounded-full bg-[#D4FF00] shadow-[0_0_16px_#D4FF00]" />
+          </div>
+        </motion.div>
+      </div>
+
+      {/* 3 Overlapping Sinusoidal Silk Ribbons Undulating Across the Canvas */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 600 220">
+        <defs>
+          <linearGradient id="silkGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#668CFF" stopOpacity="0" />
+            <stop offset="30%" stopColor="#668CFF" stopOpacity="0.45" />
+            <stop offset="70%" stopColor="#D4FF00" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#668CFF" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="silkGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#2554FF" stopOpacity="0" />
+            <stop offset="50%" stopColor="#668CFF" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#2554FF" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        {/* Ribbon 1 */}
+        <motion.path
+          d="M 0 110 Q 150 60, 300 110 T 600 110"
+          fill="none"
+          stroke="url(#silkGrad1)"
+          strokeWidth="2.5"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  d: [
+                    'M 0 110 Q 150 60, 300 110 T 600 110',
+                    'M 0 110 Q 150 160, 300 110 T 600 110',
+                    'M 0 110 Q 150 60, 300 110 T 600 110',
+                  ],
+                }
+          }
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        {/* Ribbon 2 (Higher Frequency) */}
+        <motion.path
+          d="M 0 110 Q 150 150, 300 110 T 600 110"
+          fill="none"
+          stroke="url(#silkGrad2)"
+          strokeWidth="1.8"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  d: [
+                    'M 0 110 Q 150 150, 300 110 T 600 110',
+                    'M 0 110 Q 150 70, 300 110 T 600 110',
+                    'M 0 110 Q 150 150, 300 110 T 600 110',
+                  ],
+                }
+          }
+          transition={{ duration: 7.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+        />
+
+        {/* Ribbon 3 (Subtle Accent) */}
+        <motion.path
+          d="M 0 130 C 180 80, 420 180, 600 130"
+          fill="none"
+          stroke="rgba(212,255,0,0.3)"
+          strokeWidth="1.2"
+          strokeDasharray="4 6"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  d: [
+                    'M 0 130 C 180 80, 420 180, 600 130',
+                    'M 0 130 C 180 180, 420 80, 600 130',
+                    'M 0 130 C 180 80, 420 180, 600 130',
+                  ],
+                }
+          }
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </svg>
+    </div>
+  );
+}
+
+// =========================================================================
+// 3. UPLOADED INTELLIGENCE: 3D Gyroscopic Memory Constellation
+// =========================================================================
+function UploadedIntelligenceVisual({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
+  return (
+    <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-[#050608]">
+      {/* Deep Violet / Cobalt Ambient Wash */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(102,140,255,0.15)_0%,rgba(5,6,8,0.95)_75%)] pointer-events-none" />
+
+      {/* 3D Gyroscopic Orbit Assembly */}
+      <div className="relative w-52 h-44 flex items-center justify-center [perspective:800px]">
+        {/* Central Cognitive Core Singularity */}
+        <div className="relative z-10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#668CFF] to-[#090A0C] border border-[#668CFF] flex items-center justify-center shadow-[0_0_24px_rgba(102,140,255,0.5)]">
+            <motion.div
+              animate={shouldReduceMotion ? {} : { scale: [0.8, 1.2, 0.8], opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-4 h-4 rounded-full bg-[#D4FF00] shadow-[0_0_12px_#D4FF00]"
             />
-          </svg>
-          <div className="absolute top-1 right-2 text-[7px] font-mono text-[#D4FF00]">
-            NOISE: &lt;2.4 µV RMS
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Right Telemetry */}
-      <div className="absolute bottom-3 right-3.5 text-[8px] font-mono text-[#668CFF] flex items-center gap-1.5">
-        <Activity className="w-3 h-3 text-[#D4FF00]" />
-        <span>MEA CH-01 &ndash; CH-64 LIVE CAPTURE</span>
-      </div>
-    </div>
-  );
-}
-
-// =========================================================================
-// 3. UPLOADED INTELLIGENCE CAD OVERLAY: Dual-Hemisphere Synaptic Connectome
-// =========================================================================
-function UploadedIntelligenceCadOverlay({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
-  return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Top Telemetry */}
-      <div className="absolute top-3 left-3.5 text-[8px] font-mono text-[#92969F] flex items-center gap-2">
-        <span className="text-[#668CFF]">CONNECTOME GRAPH // EPS-08</span>
-        <span>&middot;</span>
-        <span className="text-[#D4FF00]">ZERO BRAIN EMULATION</span>
-      </div>
-
-      {/* Synaptic Lattice Vector Assembly */}
-      <div className="relative w-48 h-32 flex items-center justify-between px-3">
-        {/* Left Cluster: Verified Episodic Schema */}
-        <div className="flex flex-col items-center gap-2">
-          <div className="w-10 h-10 rounded-lg border border-[#668CFF] bg-[#050608]/90 flex items-center justify-center relative shadow-[0_0_15px_rgba(102,140,255,0.3)]">
-            <Brain className="w-5 h-5 text-[#668CFF]" />
-            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#D4FF00]" />
-          </div>
-          <span className="text-[7px] font-mono text-[#668CFF] text-center">EPISODIC LATTICE</span>
-        </div>
-
-        {/* Center Moving Packet Pathways */}
-        <div className="relative flex-1 h-12 mx-2 flex items-center justify-center">
-          <div className="w-full h-px bg-gradient-to-r from-[#668CFF] via-[#D4FF00] to-[#668CFF]" />
-          <motion.div
-            animate={shouldReduceMotion ? {} : { x: [-35, 35, -35] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute w-2 h-2 rounded-full bg-[#D4FF00] shadow-[0_0_8px_#D4FF00]"
-          />
-          <div className="absolute -top-2.5 text-[7px] font-mono text-[#92969F]">
-            CONTEXT MESH
           </div>
         </div>
 
-        {/* Right Cluster: Cognitive Preservation Boundary */}
-        <div className="flex flex-col items-center gap-2">
-          <div className="w-10 h-10 rounded-lg border border-dashed border-[#D4FF00]/80 bg-[#050608]/90 flex items-center justify-center shadow-[0_0_15px_rgba(212,255,0,0.25)]">
-            <Sparkles className="w-5 h-5 text-[#D4FF00] animate-pulse" />
+        {/* Orbit Ring 1 (Tilted +28deg) */}
+        <motion.div
+          animate={shouldReduceMotion ? {} : { rotateZ: 360 }}
+          transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
+          className="absolute w-44 h-24 rounded-full border border-[#668CFF]/40 shadow-[0_0_15px_rgba(102,140,255,0.15)] flex items-center justify-center"
+          style={{ transform: 'rotateX(62deg) rotateY(28deg)' }}
+        >
+          {/* Orbiting Memory Node A */}
+          <div className="absolute -left-1.5 w-3 h-3 rounded-full bg-[#668CFF] shadow-[0_0_8px_#668CFF] flex items-center justify-center">
+            <div className="w-1 h-1 rounded-full bg-white" />
           </div>
-          <span className="text-[7px] font-mono text-[#D4FF00] text-center">BOUNDARY PROTOCOL</span>
-        </div>
-      </div>
+          {/* Orbiting Memory Node B */}
+          <div className="absolute -right-1.5 w-3 h-3 rounded-full bg-[#D4FF00] shadow-[0_0_8px_#D4FF00] flex items-center justify-center">
+            <div className="w-1 h-1 rounded-full bg-[#050608]" />
+          </div>
+        </motion.div>
 
-      {/* Bottom Right Telemetry */}
-      <div className="absolute bottom-3 right-3.5 text-[8px] font-mono text-[#92969F]">
-        STRUCTURAL MODEL &middot; <strong className="text-[#668CFF]">EMPIRICAL SCHEMA</strong>
-      </div>
-    </div>
-  );
-}
+        {/* Orbit Ring 2 (Tilted -28deg) */}
+        <motion.div
+          animate={shouldReduceMotion ? {} : { rotateZ: -360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+          className="absolute w-44 h-24 rounded-full border border-dashed border-[#D4FF00]/45 flex items-center justify-center"
+          style={{ transform: 'rotateX(62deg) rotateY(-28deg)' }}
+        >
+          {/* Orbiting Memory Node C */}
+          <div className="absolute -top-1.5 w-2.5 h-2.5 rounded-full bg-[#D4FF00] shadow-[0_0_8px_#D4FF00]" />
+          {/* Orbiting Memory Node D */}
+          <div className="absolute -bottom-1.5 w-2.5 h-2.5 rounded-full bg-[#668CFF] shadow-[0_0_8px_#668CFF]" />
+        </motion.div>
 
-// =========================================================================
-// 4. SKILLSYNTH CAD OVERLAY: 24-Bar Spectrum + Evaluative Radar Polygon
-// =========================================================================
-function SkillSynthCadOverlay({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
-  const barHeights = [35, 65, 45, 80, 55, 95, 40, 75, 60, 85, 30, 90, 50, 70, 85, 60, 40, 75, 90, 55, 35, 65, 80, 45];
-
-  return (
-    <div className="relative w-full h-full flex items-center justify-between px-6">
-      {/* Top Telemetry */}
-      <div className="absolute top-3 left-3.5 text-[8px] font-mono text-[#92969F] flex items-center gap-2">
-        <span className="text-[#668CFF]">CADENCE: 138 WPM</span>
-        <span>&middot;</span>
-        <span className="text-[#D4FF00]">STAR ALIGNMENT: 94.2%</span>
-      </div>
-
-      {/* Left: 24-Bar Live Audio Cadence Frequency Spectrum */}
-      <div className="flex items-end gap-1 h-20 w-36 px-2 py-1 rounded-lg border border-[#292C33] bg-[#050608]/85 backdrop-blur-sm">
-        {barHeights.map((h, i) => (
-          <motion.div
-            key={i}
-            animate={shouldReduceMotion ? { height: `${h * 0.7}%` } : { height: [`${h * 0.4}%`, `${h}%`, `${h * 0.5}%`] }}
-            transition={{
-              duration: 1.2 + (i % 5) * 0.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: (i % 6) * 0.1,
-            }}
-            className="w-1 bg-[#668CFF] rounded-full"
-            style={{
-              backgroundColor: i % 4 === 0 ? '#D4FF00' : '#668CFF',
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Right: 4-Axis Communication Rubric Radar Polygon */}
-      <div className="relative w-28 h-28 rounded-lg border border-[#668CFF]/30 bg-[#050608]/85 p-2 flex items-center justify-center">
-        {/* Radar Crosshairs */}
-        <div className="absolute inset-x-2 h-px bg-[#292C33]" />
-        <div className="absolute inset-y-2 w-px bg-[#292C33]" />
-        <div className="w-16 h-16 rounded-full border border-[#292C33]" />
-
-        {/* Dynamic Morphing Radar Polyhedron */}
-        <svg className="w-20 h-20 overflow-visible text-[#668CFF]" viewBox="0 0 100 100">
-          <motion.polygon
-            points="50,15 85,50 50,80 20,50"
-            fill="rgba(102, 140, 255, 0.18)"
+        {/* Synaptic Light Bridge Lines Connecting Nodes */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 208 176">
+          <motion.line
+            x1="40"
+            y1="50"
+            x2="168"
+            y2="126"
             stroke="#668CFF"
-            strokeWidth="1.6"
-            animate={
-              shouldReduceMotion
-                ? {}
-                : {
-                    points: [
-                      "50,15 85,50 50,80 20,50",
-                      "50,22 80,45 50,88 15,50",
-                      "50,12 90,52 50,75 25,48",
-                      "50,15 85,50 50,80 20,50",
-                    ],
-                  }
-            }
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            strokeWidth="1"
+            strokeDasharray="3 3"
+            opacity="0.3"
+            animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, -24] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
           />
-          {/* Vertex Peak Markers */}
-          <circle cx="50" cy="15" r="2.5" fill="#D4FF00" />
-          <circle cx="85" cy="50" r="2" fill="#668CFF" />
-          <circle cx="50" cy="80" r="2" fill="#668CFF" />
-          <circle cx="20" cy="50" r="2" fill="#D4FF00" />
+          <motion.line
+            x1="168"
+            y1="50"
+            x2="40"
+            y2="126"
+            stroke="#D4FF00"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+            opacity="0.3"
+            animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, 24] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+          />
         </svg>
-
-        <span className="absolute top-1 text-[7px] font-mono text-[#D4FF00]">CLARITY</span>
-        <span className="absolute bottom-1 text-[7px] font-mono text-[#92969F]">PACING</span>
       </div>
+    </div>
+  );
+}
 
-      {/* Bottom Right Telemetry */}
-      <div className="absolute bottom-3 right-3.5 text-[8px] font-mono text-[#668CFF]">
-        LATENCY: &lt;780ms &middot; <strong className="text-[#D4FF00]">REAL-TIME DSP</strong>
-      </div>
+// =========================================================================
+// 4. SKILLSYNTH: Translucent 4-Layer Harmonic Voice Wave + Acid Lime Crest
+// =========================================================================
+function SkillSynthVisual({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
+  return (
+    <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-[#050608]">
+      {/* Deep Cobalt Background Halo */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,84,255,0.18)_0%,rgba(5,6,8,0.95)_80%)] pointer-events-none" />
+
+      {/* 4-Layer Harmonic Voice Waveforms */}
+      <svg
+        className="w-full h-40 pointer-events-none px-2"
+        viewBox="0 0 500 160"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="harmonicsFill" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#668CFF" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#668CFF" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="harmonicsFill2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#2554FF" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#2554FF" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        {/* Harmonic Layer 1: Background Fluid Swell */}
+        <motion.path
+          d="M 0 110 Q 125 40, 250 110 T 500 110 L 500 160 L 0 160 Z"
+          fill="url(#harmonicsFill2)"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  d: [
+                    'M 0 110 Q 125 40, 250 110 T 500 110 L 500 160 L 0 160 Z',
+                    'M 0 110 Q 125 140, 250 110 T 500 110 L 500 160 L 0 160 Z',
+                    'M 0 110 Q 125 40, 250 110 T 500 110 L 500 160 L 0 160 Z',
+                  ],
+                }
+          }
+          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        {/* Harmonic Layer 2: Mid-Tone Cadence */}
+        <motion.path
+          d="M 0 100 Q 125 150, 250 100 T 500 100 L 500 160 L 0 160 Z"
+          fill="url(#harmonicsFill)"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  d: [
+                    'M 0 100 Q 125 150, 250 100 T 500 100 L 500 160 L 0 160 Z',
+                    'M 0 100 Q 125 50, 250 100 T 500 100 L 500 160 L 0 160 Z',
+                    'M 0 100 Q 125 150, 250 100 T 500 100 L 500 160 L 0 160 Z',
+                  ],
+                }
+          }
+          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+        />
+
+        {/* Harmonic Layer 3: Electric Cobalt Crest Line */}
+        <motion.path
+          d="M 0 90 Q 70 30, 150 90 T 300 90 T 450 90 T 500 90"
+          fill="none"
+          stroke="#668CFF"
+          strokeWidth="2"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  d: [
+                    'M 0 90 Q 70 30, 150 90 T 300 90 T 450 90 T 500 90',
+                    'M 0 90 Q 70 130, 150 90 T 300 90 T 450 90 T 500 90',
+                    'M 0 90 Q 70 30, 150 90 T 300 90 T 450 90 T 500 90',
+                  ],
+                }
+          }
+          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        {/* Harmonic Layer 4: Razor-Sharp Acid Lime Peak Harmonic Crest */}
+        <motion.path
+          d="M 0 80 Q 125 15, 250 80 T 500 80"
+          fill="none"
+          stroke="#D4FF00"
+          strokeWidth="2.5"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  d: [
+                    'M 0 80 Q 125 15, 250 80 T 500 80',
+                    'M 0 80 Q 125 130, 250 80 T 500 80',
+                    'M 0 80 Q 125 15, 250 80 T 500 80',
+                  ],
+                }
+          }
+          transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
+        />
+
+        {/* Real-time Voice Formant Nodes on the Acid Lime Line */}
+        <motion.circle
+          cx="125"
+          cy="48"
+          r="3"
+          fill="#D4FF00"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  cy: [48, 105, 48],
+                }
+          }
+          transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
+        />
+        <motion.circle
+          cx="375"
+          cy="112"
+          r="3"
+          fill="#D4FF00"
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  cy: [112, 55, 112],
+                }
+          }
+          transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
+        />
+      </svg>
     </div>
   );
 }

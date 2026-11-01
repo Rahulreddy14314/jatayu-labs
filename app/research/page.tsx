@@ -7,7 +7,7 @@ import { OiSignalChain } from '@/components/oi-signal-chain'
 import { ResearchMap } from '@/components/research-map'
 
 export const metadata = {
-  title: 'Research & Technical Notes | Jatayu Labs',
+  title: 'Research & Technical Notes | Kritam Labs',
   description: 'Frontier research directions, Organoid Intelligence signal pipelines, and technical inquiry map.',
 }
 

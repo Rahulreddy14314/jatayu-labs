@@ -64,16 +64,6 @@ export default function EcosystemStrip() {
       {/* Background Ambient Cobalt Radial Light Dome */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[360px] bg-[#2554FF]/[0.05] blur-[160px] pointer-events-none rounded-full" />
 
-      {/* Grid Hairlines Floor */}
-      <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #668CFF 1px, transparent 1px), linear-gradient(to bottom, #668CFF 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
-
       <Container className="relative z-10 mb-10">
         {/* Section Eyebrow & Headline */}
         <div className="max-w-3xl">
@@ -90,7 +80,7 @@ export default function EcosystemStrip() {
           </h2>
 
           <p className="mt-3.5 text-sm sm:text-base text-[#92969F] leading-relaxed m-0">
-            Jatayu Labs partners with leading technological programs, venture fellowships, and institutional incubators to stress-test our hardware, AI, and biocomputing architectures.
+            Kritam Labs partners with leading technological programs, venture fellowships, and institutional incubators to stress-test our hardware, AI, and biocomputing architectures.
           </p>
         </div>
       </Container>

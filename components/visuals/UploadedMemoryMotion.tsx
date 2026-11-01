@@ -204,10 +204,10 @@ export function UploadedMemoryMotion({ className }: { className?: string }) {
           <Info className="w-5 h-5 text-[#B87BFF] shrink-0 mt-0.5" />
           <div className="text-xs text-[#92969F] space-y-1">
             <span className="font-mono text-[#F4F4F0] uppercase tracking-wider font-semibold block">
-              Ethical &amp; Scientific Position (Jatayu Labs Brief)
+              Ethical &amp; Scientific Position (Kritam Labs Brief)
             </span>
             <p className="m-0 leading-relaxed">
-              Jatayu Labs does not claim to upload biological consciousness. Our research establishes mathematically sound, verifiable representations of personal reasoning and autobiographical memory to prevent digital context loss across generations.
+              Kritam Labs does not claim to upload biological consciousness. Our research establishes mathematically sound, verifiable representations of personal reasoning and autobiographical memory to prevent digital context loss across generations.
             </p>
           </div>
         </div>

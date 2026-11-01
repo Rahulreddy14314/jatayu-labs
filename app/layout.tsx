@@ -16,26 +16,14 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Jatayu Labs — Building what comes next',
+  title: 'Kritam Labs — Building what comes next.',
   description:
-    'Jatayu Labs builds technologies at the edge of human potential across human-computer interaction, biological intelligence, and human capability.',
-  generator: 'Jatayu Labs',
+    'Kritam Labs develops products and explores new technological frontiers across human-computer interaction, biological intelligence, and human capability.',
+  generator: 'Kritam Labs',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
   },
 }
 

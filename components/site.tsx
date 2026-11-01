@@ -6,19 +6,12 @@ import { ArrowUpRight, Menu, X, ShieldCheck } from 'lucide-react'
 import { useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import { projects, type Project, type MaturityStage } from '@/lib/projects'
+import { KritamEmblem } from '@/components/landing/KritamLogo'
 
 export function Mark() {
   return (
-    <span className="mark inline-grid place-items-center text-[#668CFF] w-6 h-6 shrink-0" aria-hidden="true">
-      <svg viewBox="0 0 28 28" fill="none" className="w-full h-full">
-        <path
-          d="M4 21.5 13.5 4l3.2 7.2L24 7.5l-5.7 9.1-7.1-3.2L4 21.5Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <path d="m11.2 13.4 5.5-2.2" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
+    <span className="mark inline-grid place-items-center text-[#F4F4F0] w-6 h-6 shrink-0" aria-hidden="true">
+      <KritamEmblem className="w-5 h-5" />
     </span>
   )
 }
@@ -79,7 +72,7 @@ export function Navbar() {
       <nav className="nav max-w-[1240px] h-[72px] px-6 md:px-8 mx-auto flex items-center justify-between" aria-label="Main navigation">
         <Link href="/" className="wordmark flex items-center gap-2.5 text-xs tracking-[0.18em] font-semibold text-[#F4F4F0] hover:text-[#668CFF] transition-colors">
           <Mark />
-          <span>JATAYU LABS</span>
+          <span>KRITAM LABS</span>
         </Link>
 
         {/* Desktop Links */}
@@ -201,7 +194,7 @@ export function Footer() {
         <div className="md:col-span-5 space-y-4">
           <Link href="/" className="wordmark flex items-center gap-2.5 text-xs tracking-[0.18em] font-semibold text-[#F4F4F0]">
             <Mark />
-            <span>JATAYU LABS</span>
+            <span>KRITAM LABS</span>
           </Link>
           <p className="text-[#92969F] text-xs leading-relaxed max-w-sm">
             Building technologies at the edge of human potential across human-computer interaction, biological intelligence, and human capability.
@@ -240,7 +233,7 @@ export function Footer() {
             <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#668CFF] mb-3">Inquiries</p>
             <ul className="space-y-2 text-[#92969F]">
               <li><Link href="/contact" className="hover:text-[#F4F4F0] transition-colors">Collaborator Intake</Link></li>
-              <li><a href="mailto:hello@jatayulabs.com" className="hover:text-[#F4F4F0] transition-colors">hello@jatayulabs.com</a></li>
+              <li><a href="mailto:hello@kritamlabs.com" className="hover:text-[#F4F4F0] transition-colors">hello@kritamlabs.com</a></li>
               <li><Link href="/privacy" className="hover:text-[#F4F4F0] transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
@@ -248,7 +241,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-[#292C33] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono text-[#92969F] uppercase tracking-wider">
-        <span>&copy; {new Date().getFullYear()} Jatayu Labs. All rights reserved.</span>
+        <span>&copy; {new Date().getFullYear()} Kritam Labs. All rights reserved.</span>
         <span>Zero fabricated social proof &middot; Transparent research milestones</span>
       </div>
     </footer>

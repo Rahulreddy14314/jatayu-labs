@@ -180,16 +180,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Background Architectural Grid Lines */}
-      <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #292C33 1px, transparent 1px), linear-gradient(to bottom, #292C33 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
-        }}
-      />
-
       <Container className="relative z-10 w-full">
         {/* =========================================================================
             1. HERO HEADER: MONUMENTAL TYPOGRAPHY & BULLETPROOF CTAS
@@ -204,7 +194,7 @@ export default function Hero() {
           >
             <span className="w-2 h-2 rounded-[2px] bg-[#D4FF00] animate-pulse shadow-[0_0_8px_#D4FF00]" />
             <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#92969F]">
-              JATAYU LABS // FRONTIER INVENTION &amp; RESEARCH
+              KRITAM LABS // FRONTIER INVENTION &amp; RESEARCH
             </span>
           </motion.div>
 
@@ -305,7 +295,7 @@ export default function Hero() {
                     <span className="text-[10px] font-mono text-[#92969F]">[ + ]</span>
                     <span className="w-2 h-2 rounded-[2px] bg-[#D4FF00] shadow-[0_0_6px_#D4FF00] animate-pulse" />
                     <span className="text-[11px] font-mono uppercase tracking-wider text-[#F4F4F0] font-semibold">
-                      SYS.TELEMETRY // JATAYU_LAB_DECK_v4.2
+                      SYS.TELEMETRY // KRITAM_LAB_DECK_v4.2
                     </span>
                   </div>
                 </div>

@@ -99,16 +99,6 @@ export function Project3DScrollStage({ slug, className }: Project3DScrollStagePr
       {/* Background Radial Light Leak */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-[#668CFF]/15 blur-[100px] pointer-events-none rounded-full" />
 
-      {/* Grid Pattern Floor */}
-      <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #668CFF 1px, transparent 1px), linear-gradient(to bottom, #668CFF 1px, transparent 1px)',
-          backgroundSize: '36px 36px',
-        }}
-      />
-
       {/* Top HUD Telemetry Bar */}
       <div className="relative z-20 flex flex-wrap items-center justify-between gap-3 border-b border-[#292C33]/80 pb-4 text-[10px] font-mono">
         <div className="flex items-center gap-2.5">

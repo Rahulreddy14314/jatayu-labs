@@ -5,8 +5,8 @@ import Footer from '@/components/landing/footer'
 import { SectionLabel } from '@/components/site'
 
 export const metadata = {
-  title: 'About | Jatayu Labs',
-  description: 'Mission, methodology, and philosophy of Jatayu Labs.',
+  title: 'About | Kritam Labs',
+  description: 'Mission, methodology, and philosophy of Kritam Labs.',
 }
 
 export default function AboutPage() {
@@ -18,7 +18,7 @@ export default function AboutPage() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#292C33] bg-[#101217] mb-4">
             <span className="w-2 h-2 rounded-full bg-[#668CFF]" />
             <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#92969F]">
-              ABOUT JATAYU LABS
+              ABOUT KRITAM LABS
             </span>
           </div>
 
@@ -28,7 +28,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-base sm:text-xl text-[#92969F] max-w-3xl leading-relaxed">
-            Jatayu Labs develops products and explores new technological frontiers across human-computer interaction, biological intelligence, and human capability.
+            Kritam Labs develops products and explores new technological frontiers across human-computer interaction, biological intelligence, and human capability.
           </p>
         </section>
 
@@ -143,7 +143,7 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-7 space-y-4 text-sm text-[#92969F] leading-relaxed">
               <p className="m-0">
-                Jatayu Labs operates as an independent invention and research entity. We partner selectively with academic universities, open-source developers, and industrial testing facilities to validate our hypotheses in real-world conditions.
+                Kritam Labs operates as an independent invention and research entity. We partner selectively with academic universities, open-source developers, and industrial testing facilities to validate our hypotheses in real-world conditions.
               </p>
               <div className="metallic-border ambient-beam cryo-glass p-5 rounded-xl flex items-start gap-3">
                 <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />

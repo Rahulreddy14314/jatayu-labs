@@ -5,8 +5,8 @@ import { CollabForm } from '@/components/collab-form'
 import { ArrowUpRight, Mail, MapPin, ShieldCheck } from 'lucide-react'
 
 export const metadata = {
-  title: 'Collaborate | Jatayu Labs',
-  description: 'Collaborator intake and inquiry routing for Jatayu Labs.',
+  title: 'Collaborate | Kritam Labs',
+  description: 'Collaborator intake and inquiry routing for Kritam Labs.',
 }
 
 export default function ContactPage() {
@@ -90,10 +90,10 @@ export default function ContactPage() {
                 Prefer direct correspondence? Our engineering and research core monitors this inbox continuously:
               </p>
               <a
-                href="mailto:hello@jatayulabs.com"
+                href="mailto:hello@kritamlabs.com"
                 className="inline-flex items-center gap-2 text-sm text-[#F4F4F0] hover:text-[#668CFF] font-mono transition-colors pt-1"
               >
-                <Mail className="w-4 h-4 text-[#668CFF]" /> hello@jatayulabs.com <ArrowUpRight className="w-3.5 h-3.5" />
+                <Mail className="w-4 h-4 text-[#668CFF]" /> hello@kritamlabs.com <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
